@@ -1,16 +1,11 @@
 [project]
-name = "ai-agent"
+name = "adk-web"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
-    "google-adk>=0.4.0",
-    "pydantic-settings>=2.9.1",
+    "google-adk>=0.5.0",
+    "google-genai>=1.15.0",
     "python-dotenv>=1.1.0",
-]
-
-[tool.uv.workspace]
-members = [
-    "1.agent_basic",
 ]

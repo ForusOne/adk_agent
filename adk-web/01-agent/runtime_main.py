@@ -1,19 +1,15 @@
 import asyncio
 import argparse
-import os
+from dotenv import load_dotenv
+from runtime import runner
 
-from cmd import runner
-
-# Constants
-PROJECT_ID = "ai-hangsik"
-LOCATION = "us-central1"
-
-os.environ["GOOGLE_GENAI_USE_VERTEXAI"] = "TRUE"
-os.environ["GOOGLE_CLOUD_PROJECT"] = PROJECT_ID
-os.environ["GOOGLE_CLOUD_LOCATION"] = LOCATION
+load_dotenv()
 
 def main() -> None:
     """Parses command line arguments and runs the basic agent."""
+
+    print("Running the agent...")
+
     parser = argparse.ArgumentParser(description="Run the basic ADK agent with a user query.")
     parser.add_argument(
         "query",
