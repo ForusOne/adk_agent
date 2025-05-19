@@ -1,9 +1,8 @@
-
 from google.genai import types
 from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner, RunConfig, StreamingMode
 
-from runtime import agent
+from memory import agent
 
 async def run_basic_agent(user_query: str):
     """
@@ -24,6 +23,7 @@ async def run_basic_agent(user_query: str):
     
     content = types.Content(role='user', parts=[types.Part(text=user_query)])
 
+    # https://google.github.io/adk-docs/runtime/runconfig/#runtime-parameters    
     run_config = RunConfig(
         response_modalities = ["TEXT"],
         streaming_mode= StreamingMode.SSE,
@@ -36,6 +36,7 @@ async def run_basic_agent(user_query: str):
                               run_config=run_config)
 
     async for event in events:
+
         if event.is_final_response():
             final_response = event.content.parts[0].text            
             print("Assistant: " + final_response)

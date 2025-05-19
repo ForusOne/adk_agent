@@ -18,7 +18,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "google-adk", specifier = ">=0.5.0" },
+    { name = "google-adk", extras = ["vertexai"], specifier = ">=0.5.0" },
     { name = "google-genai", specifier = ">=1.15.0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
 ]
