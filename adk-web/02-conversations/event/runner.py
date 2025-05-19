@@ -35,7 +35,6 @@ async def run_basic_agent(user_query: str):
                               new_message=content,
                               run_config=run_config)
 
-
     async for event in events:
         print("\n\n-------------------------")
         print(f"event : {event}")

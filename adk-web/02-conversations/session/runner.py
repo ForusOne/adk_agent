@@ -1,21 +1,15 @@
+import asyncio
 from google.genai import types
-from google.adk.sessions import Session, BaseSessionService, InMemorySessionService
-from google.adk.sessions import DatabaseSessionService
+from google.adk.sessions import BaseSessionService
 from google.adk.runners import Runner, RunConfig, StreamingMode
 
 from session import agent
 
-# Example using a local SQLite file:
-db_url = "sqlite:///./agent_session.db"
-session_service = DatabaseSessionService(db_url=db_url)
-
-initial_state = {"initial_key": "initial_value"}
-
-#------------------------------------------------------------
-
-async def run_agent( app_name: str,
+async def run_agent( session_service: BaseSessionService,
+                     app_name: str,
                      user_id: str,
-                     session_id: str):
+                     session_id: str,
+                     agent_engine_app_name: str = None):
     """
     Initializes and runs the agent with a sample query.
     Parameters:
@@ -26,6 +20,10 @@ async def run_agent( app_name: str,
     Returns None.
     
     """
+    # Check if the session service is vertex ai agent engine.
+    if agent_engine_app_name != None:
+        app_name = agent_engine_app_name
+
     existing_sessions = session_service.list_sessions(
         app_name=app_name,
         user_id=user_id,
@@ -40,7 +38,7 @@ async def run_agent( app_name: str,
         new_session = session_service.create_session(
             app_name=app_name,
             user_id=user_id,
-            state=initial_state,
+            state=None,
         )
         session_id = new_session.id
         print(f"Created new session: {session_id}")
