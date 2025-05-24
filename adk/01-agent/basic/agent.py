@@ -1,4 +1,4 @@
-# Copyright 2025 Google LLC
+# Copyright 2025 Forusone(forusone777@gmail.com)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,16 +18,35 @@ from google.adk.agents import Agent
 
 load_dotenv()
 
-INSTRUCTION = """
-    당신은 사용자의 질문에 대한 답변을 제공하는 에이전트입니다.
-    사용자가 질문을 입력하면, 그 질문에 대한 답변을 제공해야 합니다.
-    답을 제공할 때는 최대한 간결하고 명확하게 작성해야 합니다.
-"""
+def build_agent() -> Agent:
+    """
+    Creates and configures a basic Agent instance for answering user questions.
 
-root_agent = Agent(
-    name = "basic_agent",
-    model = os.getenv("MODEL"),
-    description = "사용자의 질문에 대한 질문에 답변하는 에이전트",
-    instruction = INSTRUCTION,
-)
+    This function loads environment variables, defines the agent's instruction template,
+    and initializes the Agent with a name, model, description, and instruction. The agent
+    is designed to provide concise and structured answers to user inquiries.
+
+    Returns:
+        Agent: A configured Agent instance ready to process user queries.
+    """
+
+    INSTRUCTION = """
+        You are an AI agent who provides answers to users' questions.
+        When providing answers, please respond concisely and clearly in the following structure:
+        - Question content:
+        - Question intent:
+        - Answer content:
+
+        Note: Please answer everyday conversation questions without any special format.
+    """
+
+    agent = Agent(
+        name = "basic_agent",
+        model = os.getenv("MODEL"),
+        description = "Agents that answer questions about user inquiries",
+        instruction = INSTRUCTION,
+    )
+    return agent
+
+root_agent = build_agent()
 

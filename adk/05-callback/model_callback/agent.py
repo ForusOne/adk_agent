@@ -41,6 +41,9 @@ def build_agent() -> Agent:
         - Question content:
         - Question intent:
         - Answer content:
+
+        Note: Answer casual conversation questions natually without any special format.
+
     """
 
     agent = Agent(
