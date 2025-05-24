@@ -21,6 +21,8 @@ from .callback import callback_after_agent
 
 load_dotenv()
 
+#--------------------------------[build_agent]----------------------------------
+
 def build_agent()->Agent:
     """
     Builds and returns an AI agent configured to answer user questions.

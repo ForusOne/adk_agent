@@ -34,7 +34,6 @@ async def run_agent(keyword: str,
     Returns:
         None
     """
-    # ...existing code...
 
     print(f"\n 👤 User: {user_query}\n")
 
