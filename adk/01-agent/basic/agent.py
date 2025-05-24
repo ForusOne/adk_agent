@@ -49,4 +49,3 @@ def build_agent() -> Agent:
     return agent
 
 root_agent = build_agent()
-

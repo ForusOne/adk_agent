@@ -1,3 +1,16 @@
+# Copyright 2025 Forusone(forusone777@gmail.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 from google.genai import types
 from google.adk.sessions import InMemorySessionService
@@ -5,24 +18,33 @@ from google.adk.runners import Runner, RunConfig, StreamingMode
 
 from runtime import agent
 
-async def run_basic_agent(user_query: str):
+async def run_agent(query: str):
     """
-    Initializes and runs the basic_agent with a sample query.
-    """
-    print(f"User: {user_query}")
+    Asynchronously runs the AI agent with the provided user query.
 
-    APP_NAME = "Search_Assistant"
-    USER_ID = "forusone"
+    This function creates a user session, initializes the agent runner, and sends the user's query
+    to the agent. It streams the agent's responses and prints the final response to the console.
+
+    Args:
+        query (str): The user's input or question to be processed by the agent.
+
+    Returns:
+        None
+    """
+
+    print(f"\n 👤 User: {query}\n")
+
+    APP_NAME = "AI_assistant"
+    USER_ID = "Forusone"
 
     session_service = InMemorySessionService()
     session = session_service.create_session(app_name=APP_NAME,
-                                            user_id=USER_ID,
-                                            state={"initial_key": "initial_value"})
+                                            user_id=USER_ID)
     runner = Runner(agent=agent.root_agent,
                     app_name=session.app_name,
                     session_service=session_service)
     
-    content = types.Content(role='user', parts=[types.Part(text=user_query)])
+    content = types.Content(role='user', parts=[types.Part(text=query)])
 
     run_config = RunConfig(
         response_modalities = ["TEXT"],
@@ -38,7 +60,7 @@ async def run_basic_agent(user_query: str):
     async for event in events:
         if event.is_final_response():
             final_response = event.content.parts[0].text            
-            print("Assistant: " + final_response)
+            print(f"\n 🤖 AI Assistant: {final_response}\n")
 
 if __name__ == "__main__":
     import asyncio
@@ -47,10 +69,8 @@ if __name__ == "__main__":
     print("Running the agent...")
 
     parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")
-    parser.add_argument(
-        "--query",
-        type=str,
-        help="The query/message to send to the agent.",
-    )
+    parser.add_argument("--query",type=str,help="The query/message to send to the agent.",)
+    
     args = parser.parse_args()
-    asyncio.run(run_basic_agent(user_query=args.query))
+    
+    asyncio.run(run_agent(query=args.query))
