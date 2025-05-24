@@ -1,5 +1,5 @@
 [project]
-name = "adk-web"
+name = "adk"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -10,7 +10,7 @@ dependencies = [
     "google-genai>=1.15.0",
     "langchain>=0.3.25",
     "langchain-community>=0.3.24",
-    "litellm>=1.70.2",
+    "litellm>=1.70.4",
     "python-dotenv>=1.1.0",
     "tavily-python>=0.7.2",
 ]

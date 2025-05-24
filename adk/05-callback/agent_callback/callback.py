@@ -37,12 +37,11 @@ def callback_before_agent(callback_context: CallbackContext) -> Optional[types.C
 
     # Get the contextual information from CallbackContext
     agent_name = callback_context.agent_name
-    invocation_id = callback_context.invocation_id
     current_state = callback_context.state.to_dict()
 
     # Check the information in the state to control flow berfore calling the agent. 
     if current_state.get("skip_agent", False):
-        print(f"[Before Agent] State condition met, don't run agent due to command in state - Agent: {agent_name} : Inv_ID: {invocation_id} : Current State: {current_state}")
+        print(f"[Before Agent] State condition met, don't run agent due to command in state - Agent: {agent_name} : Current State: {current_state}")
 
         # Build a content to be returned back to user without calling agent.
         return_content = types.Content(
@@ -76,12 +75,11 @@ def callback_after_agent(callback_context: CallbackContext) -> Optional[types.Co
     
     # Get the contextual information from CallbackContext
     agent_name = callback_context.agent_name
-    invocation_id = callback_context.invocation_id
     current_state = callback_context.state.to_dict()
 
     # Check the information in the state to control flow after calling the agent. 
     if current_state.get("check_response", False):
-        print(f"[After Agent] State condition met : Manage the response after calling agent : {agent_name} : Inv: {invocation_id} : Current State: {current_state}")
+        print(f"[After Agent] State condition met : Manage the response after calling agent : {agent_name} : Current State: {current_state}")
 
         # Stop the remained process after this agent called and build a content to notify to user. 
         return types.Content(

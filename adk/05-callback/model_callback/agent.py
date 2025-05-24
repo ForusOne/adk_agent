@@ -1,4 +1,4 @@
-# Copyright 2025 Google LLC
+# Copyright 2025 Forusone(forusone777@gmail.com)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,18 +21,36 @@ from .callback import callback_after_model
 
 load_dotenv()
 
-INSTRUCTION = """
-    당신은 사용자의 질문에 대한 답변을 제공하는 에이전트입니다.
-    사용자가 질문을 입력하면, 그 질문에 대한 답변을 제공해야 합니다.
-    답을 제공할 때는 최대한 간결하고 명확하게 작성해야 합니다.
-"""
+def build_agent() -> Agent:
+    """
+    Creates and configures an Agent instance for answering user questions.
 
-root_agent = Agent(
-    name = "root_agent",
-    model = os.getenv("MODEL"),
-    description = "사용자의 질문에 대한 질문에 답변하는 에이전트",
-    instruction = INSTRUCTION,
-    before_model_callback=callback_before_model,
-    after_model_callback=callback_after_model 
-)
+    This function loads environment variables, defines the agent's instruction in Korean,
+    and initializes the Agent with a name, model, description, and instruction. It also
+    attaches pre- and post-processing callbacks for model execution.
 
+    Returns:
+        Agent: A configured Agent instance ready to process user queries.
+    """
+
+    INSTRUCTION = """
+        You are an AI agent who provides answers to users' questions.
+        When providing answers, please respond concisely and clearly in the following structure:
+        - Question content:
+        - Question intent:
+        - Answer content:
+    """
+
+    agent = Agent(
+        name = "root_agent",
+        model = os.getenv("MODEL"),
+        description = "Agents that answer questions about user inquiries",
+        instruction = INSTRUCTION,
+        before_model_callback=callback_before_model,
+        after_model_callback=callback_after_model 
+    )
+
+    return agent
+
+# Set the agent as a root_agent which could be imported from runner. 
+root_agent = build_agent()
