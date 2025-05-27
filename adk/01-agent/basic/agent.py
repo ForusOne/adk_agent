@@ -43,7 +43,7 @@ def build_agent() -> Agent:
     agent = Agent(
         name = "basic_agent",
         model = os.getenv("MODEL"),
-        description = "Agents that answer questions about user inquiries",
+        description = "Agents that answer questions about user query",
         instruction = INSTRUCTION,
     )
     return agent

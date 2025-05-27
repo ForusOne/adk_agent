@@ -54,7 +54,7 @@ def build_agent(type:str = "agent") -> Agent:
         agent = Agent(
             name = "root_agent",
             model = os.getenv("MODEL"),
-            description = "Agents that answer questions about user inquiries",
+            description = "Agents that answer questions about user query",
             instruction = INSTRUCTION,
             sub_agents = [positive_critic, negative_critic],
         )        
@@ -64,7 +64,7 @@ def build_agent(type:str = "agent") -> Agent:
         agent_tool = Agent(
             name = "root_agent_tool",
             model = os.getenv("MODEL"),
-            description = "Agents that answer questions about user inquiries",
+            description = "Agents that answer questions about user query",
             instruction = INSTRUCTION,
             tools = [AgentTool(agent=positive_critic), AgentTool(agent=negative_critic)]
         )        

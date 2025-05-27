@@ -4,14 +4,26 @@ from google.adk.runners import Runner, RunConfig, StreamingMode
 
 from event import agent
 
-async def run_basic_agent(user_query: str):
-    """
-    Initializes and runs the basic_agent with a sample query.
-    """
-    print(f"User: {user_query}")
+async def run_agent(query: str):
 
-    APP_NAME = "Search_Assistant"
-    USER_ID = "forusone"
+    """
+    Asynchronously runs the AI agent with the provided user query.
+
+    This function creates a user session, initializes the agent runner, and sends the user's query
+    to the agent. It streams the agent's responses, prints event details for each step, and displays
+    the final response from the agent in the console.
+
+    Args:
+        query (str): The user's input or question to be processed by the agent.
+
+    Returns:
+        None
+    """
+
+    print(f"\n 👤 User: {query}\n")
+
+    APP_NAME = "AI_assistant"
+    USER_ID = "Forusone"
 
     session_service = InMemorySessionService()
     session = session_service.create_session(app_name=APP_NAME,
@@ -21,9 +33,8 @@ async def run_basic_agent(user_query: str):
                     app_name=session.app_name,
                     session_service=session_service)
     
-    content = types.Content(role='user', parts=[types.Part(text=user_query)])
+    content = types.Content(role='user', parts=[types.Part(text=query)])
 
-    # https://google.github.io/adk-docs/runtime/runconfig/#runtime-parameters    
     run_config = RunConfig(
         response_modalities = ["TEXT"],
         streaming_mode= StreamingMode.SSE,
@@ -60,7 +71,7 @@ async def run_basic_agent(user_query: str):
                
         if event.is_final_response():
             final_response = event.content.parts[0].text            
-            print("Assistant: " + final_response)
+            print(f"\n 🤖 AI Assistant: {final_response}\n")
 
 if __name__ == "__main__":
     import asyncio
@@ -75,4 +86,4 @@ if __name__ == "__main__":
         help="The query/message to send to the agent.",
     )
     args = parser.parse_args()
-    asyncio.run(run_basic_agent(user_query=args.query))
+    asyncio.run(run_agent(query=args.query))
