@@ -6,17 +6,27 @@ from google.adk.sessions import InMemorySessionService
 
 from state import agent
 
+#--------------------------------[run_agent]----------------------------------
+
 async def run_agent( app_name: str,
                      user_id: str,
                      session_id: str,):
+
     """
-    Initializes and runs the agent with a sample query.
-    Parameters:
+    Runs the agent in a conversational loop while displaying session state changes.
+
+    This function creates a session for the user and application, then enters a loop
+    where it prompts the user for input, sends the input to the agent, and prints the
+    agent's response. After each interaction, it retrieves and displays the updated
+    session state to show how the agent's state evolves over time.
+
+    Args:
         app_name (str): The name of the application.
-        user_id (str): The ID of the user.
-        session_id (str): The ID of the session.
-    Returns None.
-    
+        user_id (str): The user identifier.
+        session_id (str): The session identifier.
+
+    Returns:
+        None
     """
 
     session_service = InMemorySessionService()
@@ -32,8 +42,8 @@ async def run_agent( app_name: str,
 
     while True:
 
-        user_input = input("You: ")
-        if user_input.lower() == "exit":
+        user_input = input("\n 👤 User: ")
+        if user_input.lower().strip() in ["exit", "quit", "bye"]:
             break
 
         content = types.Content(role='user', parts=[types.Part(text=user_input)])
@@ -45,21 +55,23 @@ async def run_agent( app_name: str,
         async for event in events:
             if event.is_final_response():
                 final_response = event.content.parts[0].text            
-                print("Assistant: " + final_response)
+                print("\n 🤖 AI Assistant: " + final_response)
 
         updated_session = session_service.get_session(app_name = app_name, 
                                                      user_id = user_id, 
                                                      session_id = session_id)
 
-        print(f"State after agent run: {updated_session.state}")
+        print(f"\nState after agent run: {updated_session.state}")
+        print(f"\nState after agent run: {updated_session.state['last_turn']}")
 
-#------------------------------------------------------------
+#--------------------------------[__main__]----------------------------------
 
 if __name__ == "__main__":
     import asyncio
     import argparse
 
     print("Running the agent...")
+    print("Usage : uv run -m state.output_key --app_name <app_name> --user_id <user_id> --session_id <session_id>")
 
     parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")
     parser.add_argument("--app_name",type=str,help="The application name of this agent.",)

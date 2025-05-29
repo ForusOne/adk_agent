@@ -5,21 +5,34 @@ from google.adk.runners import Runner, RunConfig, StreamingMode
 
 from session import agent
 
-async def run_agent( session_service: BaseSessionService,
-                     app_name: str,
-                     user_id: str,
-                     session_id: str,
-                     agent_engine_app_name: str = None):
+#--------------------------------[run_agent]----------------------------------
+
+async def run_agent(
+    session_service: BaseSessionService,
+    app_name: str,
+    user_id: str,
+    session_id: str,
+    agent_engine_app_name: str = None
+):
     """
-    Initializes and runs the agent with a sample query.
-    Parameters:
+    Runs the agent in a session-aware conversational loop.
+
+    This function checks for existing sessions for the user and application. If a session exists,
+    it continues the most recent session; otherwise, it creates a new session. The function then
+    enters a loop, prompting the user for input, sending the input to the agent, and printing the
+    agent's response. Session state and events are printed after each interaction.
+
+    Args:
+        session_service (BaseSessionService): The session service for managing user sessions.
         app_name (str): The name of the application.
-        user_id (str): The ID of the user.
-        session_id (str): The ID of the session.
-        session_service (BaseSessionService): The session service.
-    Returns None.
-    
+        user_id (str): The user identifier.
+        session_id (str): The session identifier.
+        agent_engine_app_name (str, optional): The app name for the agent engine, if applicable.
+
+    Returns:
+        None
     """
+
     # Check if the session service is vertex ai agent engine.
     if agent_engine_app_name != None:
         app_name = agent_engine_app_name
@@ -56,7 +69,7 @@ async def run_agent( session_service: BaseSessionService,
 
     while True:
 
-        user_input = input("You: ")
+        user_input = input("\n 👤 User: ")
         if user_input.lower() == "exit":
             break
 
@@ -75,22 +88,29 @@ async def run_agent( session_service: BaseSessionService,
 
             if event.is_final_response():
                 final_response = event.content.parts[0].text            
-                print("Assistant: " + final_response)
+                print("\n 🤖 AI Assistant: " + final_response)
 
-#------------------------------------------------------------
+#--------------------------------[print_session]----------------------------------
 
 async def print_session(app_name: str,
                         user_id: str,
                         session_id: str,
                         session_service: BaseSessionService):
     """
-    Retrieves the session from the session service.
-    Parameters:
+    Retrieves and prints the properties of a session.
+
+    This function fetches the session object from the session service using the provided
+    application name, user ID, and session ID. It then prints key session properties,
+    including the session ID, application name, user ID, state, events, and last update time.
+
+    Args:
         app_name (str): The name of the application.
         user_id (str): The ID of the user.
         session_id (str): The ID of the session.
-        session_service (BaseSessionService): The session service.
-    Returns None.
+        session_service (BaseSessionService): The session service instance.
+
+    Returns:
+        None
     """
 
     session  = session_service.get_session(app_name=app_name,
@@ -107,22 +127,3 @@ async def print_session(app_name: str,
     print(f"Last Update (`last_update_time`): {session.last_update_time:.2f}")
     print(f"---------------------------------")
 
-#------------------------------------------------------------
-
-if __name__ == "__main__":
-    import asyncio
-    import argparse
-
-    print("Running the agent...")
-
-    parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")
-    parser.add_argument("--app_name",type=str,help="The application name of this agent.",)
-    parser.add_argument("--user_id",type=str,help="The user name interacting with this agent",)
-    parser.add_argument("--session_id",type=str,help="The session id to identify the session of this agent",)
-    args = parser.parse_args()
-
-
-    asyncio.run(run_agent(app_name = args.app_name, 
-                                user_id = args.user_id, 
-                                session_id = args.session_id,))
-    

@@ -3,7 +3,6 @@ import asyncio
 import argparse
 from dotenv import load_dotenv
 
-from google.adk.sessions import BaseSessionService
 from google.adk.events import Event, EventActions
 from google.adk.sessions import InMemorySessionService
 
@@ -12,16 +11,7 @@ from state import agent
 async def run_agent( app_name: str,
                      user_id: str,
                      session_id: str,):
-    """
-    Initializes and runs the agent with a sample query.
-    Parameters:
-        app_name (str): The name of the application.
-        user_id (str): The ID of the user.
-        session_id (str): The ID of the session.
-        session_service (BaseSessionService): The session service.
-    Returns None.
-    
-    """
+
     session_service = InMemorySessionService()
 
     session = session_service.create_session(

@@ -20,6 +20,8 @@ from google.adk.tools import load_memory # Tool to query memory
 
 load_dotenv()
 
+#--------------------------------[build_search_agent]----------------------------------
+
 def build_search_agent() -> Agent:
     """
     Creates and configures an Agent instance with Google Search tool support.
@@ -52,6 +54,7 @@ def build_search_agent() -> Agent:
     )
     return search_agent
 
+#--------------------------------[build_recall_agent]----------------------------------
 
 def build_recall_agent() -> Agent:
     """

@@ -7,7 +7,6 @@ from google.adk.sessions import VertexAiSessionService
 
 from session import runner
 
-
 if __name__ == "__main__":
     import asyncio
     import argparse

@@ -19,7 +19,7 @@ from google.adk.memory import BaseMemoryService
 
 from memory import agent
 
-
+#--------------------------------[orchestrate_search_and_recall]----------------------------------
 
 async def orchestrate_search_and_recall(
     session_service: BaseSessionService,
@@ -55,7 +55,9 @@ async def orchestrate_search_and_recall(
 
     recall_session_id = "recall_session_id"
     await run_recall_agent(runner,app_name,user_id,recall_session_id,)
-    
+
+#--------------------------------[run_search_agent]----------------------------------
+
 async def run_search_agent(runner:Runner,
                      app_name,
                      user_id,
@@ -107,6 +109,7 @@ async def run_search_agent(runner:Runner,
     await runner.memory_service.add_session_to_memory(completed_session_1)
     print("Session added to memory.")
 
+#--------------------------------[run_recall_agent]----------------------------------
 
 async def run_recall_agent(runner:Runner,
                            app_name,
