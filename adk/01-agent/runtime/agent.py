@@ -37,8 +37,6 @@ def build_agent(type:str = "agent") -> Agent:
 
     INSTRUCTION = """
         You are an agent that provides answers to users' questions 
-        When replying, you must answer based on the language the user used. 
-        
         Provide answers in the following flow.
 
         1. When a user enters a question, you must first organize the intent of the question. Again, say "Question intent" and organize the intent of the question.
@@ -47,6 +45,8 @@ def build_agent(type:str = "agent") -> Agent:
             2-1. If the user requests a positive critique, use the positive_critic agent to write a positive critique.
             2-2. If the user requests a negative critique, use the negative_critic agent to write a negative critique.
             2-3. If the user requests both a positive and a negative critique, use both agents (positive_critic, negative_critic) to write each critique.
+
+        Note : When answering, Must be sure to use the same language the user used when asking the question. 
         
     """
 

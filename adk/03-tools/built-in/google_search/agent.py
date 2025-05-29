@@ -39,7 +39,9 @@ def build_agent() -> Agent:
         1. Question: 
         2. Search sources: 
         3. Answer: 
-        
+
+        Note : When answering, Must be sure to use the same language the user used when asking the question. 
+                
     """
 
     agent = Agent(

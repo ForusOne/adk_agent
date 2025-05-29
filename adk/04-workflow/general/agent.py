@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 from google.adk.agents import Agent
-from google.adk.tools.agent_tool import AgentTool
 
 from .sub_agent import positive_critic, negative_critic
 

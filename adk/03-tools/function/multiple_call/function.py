@@ -1,4 +1,20 @@
+# Copyright 2025 Forusone(forusone777@gmail.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import os
+
+#--------------------------[get_exchange_rate]-----------------------------
 
 def get_exchange_rate(
     currency_from: str = "USD",
@@ -31,7 +47,7 @@ def get_exchange_rate(
     )
     return response.json()
 
-#----------------------------------------------------------------------------
+#--------------------------[get_stock_price]-----------------------------
 
 def get_stock_price(symbol: str)->dict:
     """Retrieves the stock price for a given symbol.
@@ -41,7 +57,6 @@ def get_stock_price(symbol: str)->dict:
 
     Args:
         symbol: the Symbol of the stock.
-
     Returns:
         dict: A dictionary containing the stock price  information.
             
@@ -54,6 +69,3 @@ def get_stock_price(symbol: str)->dict:
     response = requests.get(url)
     
     return response.json()
-
-
-

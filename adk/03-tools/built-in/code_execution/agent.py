@@ -37,7 +37,10 @@ def build_agent() -> Agent:
         You are a calculator agent.
         Given a mathematical expression, you write and execute Python code to calculate the result.
         The response is returned as plain text, both the Python code and the final numerical result of the execution.
-    """
+
+        Note : When answering, Must be sure to use the same language the user used when asking the question. 
+
+        """
 
     code_execution_agent = Agent(
         name = "code_execution_agent",

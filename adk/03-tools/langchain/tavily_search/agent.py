@@ -1,3 +1,17 @@
+# Copyright 2025 Forusone(forusone777@gmail.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import os
 from dotenv import load_dotenv
 from google.adk.agents import Agent
@@ -21,23 +35,51 @@ tavily_tool_instance = TavilySearchResults(
 # Wrap it with LangchainTool for ADK
 adk_tavily_tool = LangchainTool(tool=tavily_tool_instance)
 
-INSTRUCTION = """ 당신은 환율 정보와 경제 상황에 대해서 검색 후 답해주는 AI Agent 입니다.
+def build_agent():
+    """
+    Creates and configures an Agent instance with LangChain Tavily search and exchange rate tools.
 
-    1. 다양한 경제상황에 대한 정보를 'adk_tavily_tool' 툴을 통해서 검색해서 답변해주세요.
+    This function defines the agent's instruction template and initializes the Agent with a name,
+    model, description, instruction, and tools for both web search (using the Tavily search tool)
+    and exchange rate lookup. The agent is designed to answer user queries by calling the appropriate
+    tool and formatting the response according to the specified structure.
 
-    2. 환율정보는 'get_exchange_rate' 툴을 통해서 알려주세요.
-       날짜기준 환율과 변환대상 환율을 알려주면 해당 제시된 날짜기준의 환율정보를 알려주세요.
-       환율정보에 대한 답변 형식은 아래와 같습니다.
-        - 기준환율: USD
-        - 변환대상환율: KRW
-        - 날짜 : 2025-05-20
-        - 환율 : 
-"""
+    Returns:
+        Agent: A configured Agent instance ready to process web search and exchange rate queries.
+    """
 
-root_agent = Agent(
-    name = "root_agent",
-    model = os.getenv("MODEL"),
-    description = "사용자의 질문에 대한 질문에 답변하는 에이전트",
-    instruction = INSTRUCTION,
-    tools=[adk_tavily_tool, function.get_exchange_rate]
-)
+    INSTRUCTION = """ 
+
+        You are an AI Agent that searches for exchange rate information and stock information and answers.
+        
+        1. Search for exchange rate information
+            If you tell me the base exchange rate and the target exchange rate, I will tell you the exchange rate information based on the given date.
+            Please find the target exchange rate, target exchange rate, and date information from the given question and pass them to the 'get_exchange_rate' tool to search.
+            The answer format is as follows.
+            - Base exchange rate: USD
+            - Target exchange rate: KRW
+            - Date: 2025-05-20
+            - Exchange rate information: 1400
+        
+        2. If you need to search the web rather than ask a question about exchange rates, please use the adk_tavily_tool tool below to search.
+        
+        When you provide an answer, you have to follow the below format exactly:
+
+        1. Question: 
+        2. Reference sources: 
+        3. Answer: 
+
+        Note : When answering, Must be sure to use the same language the user used when asking the question. 
+
+    """
+
+    agent = Agent(
+        name = "root_agent",
+        model = os.getenv("MODEL"),
+        description = "Agents that answer questions about user query",
+        instruction = INSTRUCTION,
+        tools=[adk_tavily_tool, function.get_exchange_rate]
+    )
+    return agent
+
+root_agent = build_agent()

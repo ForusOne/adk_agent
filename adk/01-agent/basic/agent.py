@@ -37,7 +37,8 @@ def build_agent() -> Agent:
         - Question intent:
         - Answer content:
 
-        Note: Please answer everyday conversation questions without any special format.
+        Please answer everyday conversation questions without any special format.
+        Note : When answering, Must be sure to use the same language the user used when asking the question. 
     """
 
     agent = Agent(
