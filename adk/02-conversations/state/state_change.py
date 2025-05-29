@@ -6,50 +6,64 @@ from dotenv import load_dotenv
 from google.adk.events import Event, EventActions
 from google.adk.sessions import InMemorySessionService
 
-from state import agent
-
 async def run_agent( app_name: str,
                      user_id: str,
                      session_id: str,):
+    """
+    Demonstrates explicit state change in a session using the ADK event system.
+
+    This function creates a session with an initial state, appends a system event to
+    update the session state (such as adding a timestamp), and prints the state before
+    and after the event to show how the session state changes over time.
+
+    Args:
+        app_name (str): The name of the application.
+        user_id (str): The user identifier.
+        session_id (str): The session identifier.
+
+    Returns:
+        None
+    """
 
     session_service = InMemorySessionService()
+
+    # define init state.
+    init_state = {
+        "task_status": "active", 
+    }
 
     session = session_service.create_session(
         app_name=app_name,
         user_id=user_id,
         session_id=session_id,
-        state={"user:login_count": 0, "task_status": "idle"}
+        state=init_state
     )
     
-    print(f"Initial state: {session.state}")
+    print(f"1. Initial state: {session.state}")
 
-    # --- Define State Changes ---
-    current_time = time.time()
+    # change the state
     state_changes = {
-        "task_status": "active",              # Update session state
-        "user:login_count": session.state.get("user:login_count", 0) + 1, # Update user state
-        "user:last_login_ts": current_time,   # Add user state
-        "temp:validation_needed": True        # Add temporary state (will be discarded)
+        "task_status": "active", 
+        "timestamp": time.time(),   
     }
 
-    # --- Create Event with Actions ---
-    actions_with_update = EventActions(state_delta=state_changes)
     system_event = Event(
-        invocation_id="inv_login_update",
-        author="system", # Or 'agent', 'tool' etc.
-        actions=actions_with_update,
-        timestamp=current_time
+        invocation_id = "change-state",
+        author = "system", # Or 'agent', 'tool' etc.
+        actions = EventActions(state_delta=state_changes),
+        timestamp = time.time()
     )
 
-    # --- Append the Event (This updates the state) ---
+    # change the state with append_event
     session_service.append_event(session, system_event)
-    print("`append_event` called with explicit state delta.")
 
-    # --- Check Updated State ---
+    print("2. Append new changed event to explicit state delta.")
+
     updated_session = session_service.get_session(app_name=app_name,
                                                 user_id=user_id, 
                                                 session_id=session_id)
-    print(f"State after event: {updated_session.state}")
+    
+    print(f"3. State after event sent: {updated_session.state}")
 
 if __name__ == "__main__":
 
