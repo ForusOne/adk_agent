@@ -1,4 +1,17 @@
-import os
+# Copyright 2025 Forusone(forusone777@gmail.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from dotenv import load_dotenv
 from google.adk.agents import SequentialAgent
 from google.adk.agents import ParallelAgent
@@ -7,27 +20,29 @@ from .sub_agent import positive_critic, negative_critic, review_critic
 
 load_dotenv()
 
-INSTRUCTION = """
-    당신은 사용자의 질문에 대한 답변을 제공하는 에이전트입니다.
+def build_agent():
+    """
+    Creates and configures a workflow Agent using ParallelAgent and SequentialAgent.
 
-    1. 사용자가 질문을 입력하면, 먼저 그 질문의도를 정리해야 합니다. 다시에는 "질문의도" 라고 말하고, 그 질문의도를 정리합니다.
+    This function defines a parallel agent for running positive and negative critics in parallel,
+    and a sequential agent that first executes the parallel research agent and then the review critic.
+    The resulting agent executes a workflow where multiple research agents run in parallel, followed by a review step.
 
-    2. 사용자의 질문에 대해서 반드시 아래와 같이 3가지 sub_agents 사용하여 답변을 제공해야 합니다.
-        1. positive_critic 에이전트를 사용하여 긍정적인 비평을 답변합니다.
-        2. negative_critic 에이전트를 사용하여 부정적인 비평을 답변합니다.
-        3. review_critic 에이전트를 사용하여 전체적인 요약 및 결론을 답변합니다.
-"""
+    Returns:
+        SequentialAgent: A configured agent ready to process user queries through a parallel and sequential workflow.
+    """
 
-parallel_research_agent = ParallelAgent(
-    name="parallel_research_agent",
-    sub_agents=[positive_critic, negative_critic],
-    description="Runs multiple research agents in parallel to gather information."
-)
+    parallel_research_agent = ParallelAgent(
+        name="parallel_research_agent",
+        sub_agents=[positive_critic, negative_critic],
+        description="Runs multiple research agents in parallel to gather information."
+    )
 
-pipeline_agent = SequentialAgent(
-    name="pipeline_agent",
-    sub_agents=[parallel_research_agent, review_critic],
-    description="Executes a sequence of parallel_research_agent, and review_critic.",
-)
+    pipeline_agent = SequentialAgent(
+        name="pipeline_agent",
+        sub_agents=[parallel_research_agent, review_critic],
+        description="Executes a sequence of parallel_research_agent, and review_critic.",
+    )
+    return pipeline_agent
 
-root_agent = pipeline_agent
+root_agent = build_agent()

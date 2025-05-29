@@ -37,7 +37,7 @@ positive_critic = Agent(
 negative_critic = Agent(
     name = "negative_critic",
     model = os.getenv("MODEL"),
-    description = "Agents that answer questions about users' questions with negative aspe",
+    description = "Agents that answer questions about users' questions with negative aspects",
     instruction = """
                     You are an agent who writes a negative review on a given topic.
                     When a user inputs a topic, you have to search for negative aspects of that topic and write a negative review. When providing an answer, you should write it as concisely and clearly as possible, and start with the words "negative review."

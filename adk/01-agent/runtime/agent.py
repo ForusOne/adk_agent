@@ -42,9 +42,9 @@ def build_agent(type:str = "agent") -> Agent:
         1. When a user enters a question, you must first organize the intent of the question. Again, say "Question intent" and organize the intent of the question.
 
         2. Depending on the user's question, you must provide an answer using sub_agents as follows.
-            2-1. If the user requests a positive critique, use the positive_critic agent to write a positive critique.
-            2-2. If the user requests a negative critique, use the negative_critic agent to write a negative critique.
-            2-3. If the user requests both a positive and a negative critique, use both agents (positive_critic, negative_critic) to write each critique.
+            2-1. If the user requests a positive critique, use the positive_critic agent(or tool) to write a positive critique.
+            2-2. If the user requests a negative critique, use the negative_critic agent(or tool) to write a negative critique.
+            2-3. If the user requests both a positive and a negative critique, use both agent(or tools) (positive_critic, negative_critic) to write each critique.
 
         Note : When answering, Must be sure to use the same language the user used when asking the question. 
         
