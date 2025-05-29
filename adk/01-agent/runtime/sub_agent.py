@@ -14,7 +14,6 @@
 
 import os
 from dotenv import load_dotenv
-
 from google.adk.agents import Agent
 
 load_dotenv()
