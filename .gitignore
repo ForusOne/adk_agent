@@ -174,5 +174,5 @@ cython_debug/
 .pypirc
 
 # custom folder
-.custom
-.vertexai_search
+.custom/
+.vertexai_search/

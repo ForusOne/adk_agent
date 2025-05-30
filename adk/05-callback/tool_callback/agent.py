@@ -25,6 +25,17 @@ load_dotenv()
 #--------------------------------[build_agent]----------------------------------
 
 def build_agent() -> Agent:
+    """
+    Creates and configures an Agent instance with a tool and callback support.
+
+    This function loads environment variables, defines the agent's instruction template,
+    and initializes the Agent with a name, model, description, instruction, and a tool for
+    retrieving capital city information. It also attaches pre- and post-processing callbacks
+    for tool execution, allowing custom logic before and after tool calls.
+
+    Returns:
+        Agent: A configured Agent instance ready to process user queries with tool and callback support.
+    """
 
     INSTRUCTION = """
         You are an AI agent who provides answers to users' questions.
