@@ -16,8 +16,44 @@ from pydantic import BaseModel, Field
 
 class SearchResult(BaseModel):
     """
-    Search results based on a user's query and intention.
+    Pydantic model representing the structure of a search result.
+
+    Attributes:
+        query (str): The user's query string.
+        intention (str): The user's intention or purpose for asking the query.
+        result (str): The results or answer corresponding to the query.
     """
+    # ...existing code...
     query: str = Field(..., title="query", description="user's query")
     intention: str = Field(..., title="intention", description="user's intention to ask")
     result: str = Field(..., title="result", description="results")
+
+
+""" JSON Format of schema. 
+
+search_result = {
+    "title": "search_results",
+    "type": "OBJECT",
+    "description": "search results",
+    "required": ["query", "intention","result"],
+    "properties": {
+      "query": {
+        "title": "query",
+        "type": "STRING",
+        "description": "user's query"
+      },
+      "intention": {
+        "title": "intention",
+        "type": "STRING",
+        "description": "user's intention to ask"
+	  },
+      "result": {
+        "title": "result",
+        "type": "STRING",
+        "description": "results"
+      },	  
+    },
+    "property_ordering": ["query", "intention", "results"]
+}    
+
+"""
