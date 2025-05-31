@@ -16,7 +16,7 @@ import os
 
 from google.genai import types
 from google.adk.sessions import InMemorySessionService
-from google.adk.runners import Runner, RunConfig, StreamingMode
+from google.adk.runners import Runner
 
 from vertexai_search import agent
 

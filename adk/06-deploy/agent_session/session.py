@@ -18,6 +18,22 @@ def call_agent(runner,
                user_id:str,
                session_id:str,
                query:str):
+    """
+    Sends a user query to the agent and prints the agent's response.
+
+    This function constructs a message from the user's input, sends it to the agent using the provided
+    runner, and iterates through the response events. When a final response is received, it prints
+    the agent's answer to the console.
+
+    Args:
+        runner: The Runner instance used to execute the agent.
+        user_id (str): The user identifier.
+        session_id (str): The session identifier.
+        query (str): The user's input or question to be processed by the agent.
+
+    Returns:
+        None
+    """
 
     content = types.Content(role='user', parts=[types.Part(text=query)])
     
@@ -35,7 +51,24 @@ def run_agent(agent_engine_id:str,
                     user_id:str,
                     query:str,
                     session_id:str = None,):
-    
+
+    """
+    Runs the agent in a conversational loop using the specified agent engine and session.
+
+    This function creates a session for the user and application, then enters a loop
+    where it prompts the user for input, sends the input to the agent, and prints the
+    agent's response. The conversation continues until the user types "exit".
+
+    Args:
+        agent_engine_id (str): The identifier for the agent engine (app name).
+        user_id (str): The user identifier.
+        query (str): The initial user query (not used in the loop).
+        session_id (str, optional): The session identifier. If not provided, a new session is created.
+
+    Returns:
+        None
+    """
+
     # Create the ADK runner with VertexAiSessionService
     session_service = VertexAiSessionService(os.getenv("PROJECT_ID"), os.getenv("LOCATION"))
 

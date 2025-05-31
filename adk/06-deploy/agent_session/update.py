@@ -16,6 +16,20 @@ load_dotenv()
 
 def update_remote_agent(resource_name:str):
 
+    """
+    Updates a remote agent engine on Vertex AI with the latest agent configuration.
+
+    This function initializes the Vertex AI environment, retrieves the remote agent engine
+    using the provided resource name, and updates the agent engine with the current agent,
+    description, requirements, and other configuration options.
+
+    Args:
+        resource_name (str): The resource name of the agent engine to update.
+
+    Returns:
+        None
+    """
+
     # Initialize Vertex AI to deploy Agent Engine. 
     vertexai.init(
         project=os.getenv("PROJECT_ID"),

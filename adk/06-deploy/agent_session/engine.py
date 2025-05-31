@@ -7,8 +7,25 @@ from vertexai import agent_engines
 
 load_dotenv()
 
+#-----------------------------[create_agent_engine]-----------------------------
+
 def create_agent_engine(agent_name:str,
                         description:str=None):
+    """
+    Creates and deploys an agent engine on Vertex AI.
+
+    This function initializes the Vertex AI environment using environment variables,
+    then creates an agent engine instance with the specified display name and description.
+    The agent engine is stored in the Google Cloud Storage directory specified by the
+    STAGING_BUCKET environment variable.
+
+    Args:
+        agent_name (str): The display name for the agent engine.
+        description (str, optional): A description for the agent engine.
+
+    Returns:
+        agent_engines.AgentEngine: The created agent engine instance.
+    """
 
     # Initialize Vertex AI to deploy Agent Engine. 
     vertexai.init(
