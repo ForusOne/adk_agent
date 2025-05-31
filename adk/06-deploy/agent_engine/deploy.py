@@ -31,34 +31,57 @@ load_dotenv()
 def build_adk_app(root_agent:Agent,
               user_id:str,
               query:str,):
+    """
+    Initializes and runs an ADK application with the provided agent and user query.
 
+    This function sets up the Vertex AI environment, creates an AdkApp instance with the given agent,
+    and streams the agent's response to the provided user query. It prints each response outcome to the console.
+
+    Args:
+        root_agent (Agent): The root agent to be used in the ADK application.
+        user_id (str): The user identifier for the query session.
+        query (str): The user's input or question to be processed by the agent.
+
+    Returns:
+        AdkApp: The initialized AdkApp instance.
+    """
+
+    print("### Agent LOCAL unit test")
+    print(f"\n 👤 User: {query}\n")
+
+    # Initialize Vertex AI to deploy Agent Engine. 
     vertexai.init(
         project=os.getenv("PROJECT_ID"),
         location=os.getenv("LOCATION"),
         staging_bucket=os.getenv("STAGING_BUCKET"),
     )
+    # Create a adk_app with root_agent. 
     adk_app = AdkApp(agent=root_agent)
 
-    events = adk_app.stream_query(user_id=user_id, message=query)
-
-    print(f"Unit test in AdkApp : {query}")
+    # Create a event for unit test.    
+    events = adk_app.stream_query(user_id=user_id,
+                                  message=query)
 
     for event in events:
-        outcome = event['content']['parts'][0]['text']
-        print(outcome)
+        response = event['content']['parts'][0]['text']
+        print(f"\n 🤖 Local AI Assistant: {response}\n")
 
     return adk_app
-
 
 if __name__ == "__main__":
     
     print(""" Usage : uv run -m agent_engine.deploy --query 'What is the Generative AI?' """)
     parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")
     parser.add_argument("--query",type=str,help="The application name of this agent.",)
+    parser.add_argument("--agent_name",type=str,help="The name of agent",)
+    parser.add_argument("--user_id",type=str,help="The user id",)
+    parser.add_argument("--session_id",type=str,help="The session_id",)
 
     args = parser.parse_args()
-    user_id = "Forusone"
     query = args.query
+    agent_name = args.agent_name
+    user_id = args.user_id
+    session_id = args.session_id
 
     #1. Print all registered agents.
     show_agents()
@@ -67,7 +90,7 @@ if __name__ == "__main__":
     adk_app = build_adk_app(root_agent, user_id, query)
 
     #3. Deploy the adk_app on Agent Engine.
-    display_name = "search agent"
+    display_name = agent_name
     gcs_dir_name = os.getenv("STAGING_BUCKET")
     description = "AI information search assistant to user's question"
     requirements = [
@@ -76,8 +99,8 @@ if __name__ == "__main__":
         "cloudpickle==3.0",
         "python-dotenv",
     ]
-    extra_packages = []
 
+    extra_packages = []
     remote_agent = deploy_agent(agent = adk_app, 
                                 display_name = display_name, 
                                 gcs_dir_name = gcs_dir_name,
@@ -85,35 +108,15 @@ if __name__ == "__main__":
                                 requirements = requirements,
                                 extra_packages = extra_packages)
 
-    #4. Get the remote agent engine instance.
-    remote_agent_engine = get_agent_engine(resource_name = remote_agent.resource_name)
+    # #4. Get the remote agent engine instance.
+    # remote_agent_engine = get_agent_engine(resource_name = remote_agent.resource_name)
 
-    #5. Execute the query.
-    print(f"Outcome from Agent Engine in remote. ")            
+    # #5. Execute the query.
+    # print("### Agent REMOTE unit test")
+    
+    # events = remote_agent_engine.stream_query(user_id=user_id,
+    #                                           message=args.query,)
 
-    for event in remote_agent_engine.stream_query(
-        user_id=user_id,
-        message=args.query,):
-
-        outcome = event['content']['parts'][0]['text']
-        print(outcome)            
-
-
-# if __name__ == "__main__":
-        
-#         resource_name = "projects/721521243942/locations/us-central1/reasoningEngines/1950665569069957120"
-#         remote_agent_engine = get_agent_engine(resource_name = resource_name)
-#         print(remote_agent_engine)
-
-#         for event in remote_agent_engine.stream_query(
-#             user_id="Forusone",
-#             message="What is the Generative AI?",):
-            
-#             print(event)
-#             #outcome = event['content']['parts'][0]['text']
-
-
-
-
-
-
+    # for event in events:
+    #     response = event['content']['parts'][0]['text']
+    #     print(f"\n 🤖 Remote AI Assistant: {response}\n")

@@ -79,24 +79,27 @@ def get_agent_engine(display_name = None,
         agent_engines.AgentEngine: The matching AgentEngine instance if found, otherwise None.
     """
     
-    print("\n\n### Get a agent engines with display name or resource name. \n\n")
+    # print("\n\n### Get a agent engines with display name or resource name. \n\n")
 
     try:
         for agent in agent_engines.list():
-
+            
+            print(f"Agents List : {agent.display_name}:{agent.resource_name}")
+            
             if agent.display_name != None and agent.display_name == display_name:
+                print(f"Agent found a engine with {display_name}")
+
                 return agent_engines.get(agent.name)
 
             elif agent.resource_name != None and agent.resource_name == resource_name:
+                print(f"Agent found a engine with resource name {resource_name}")
+
                 return agent_engines.get(agent.resource_name)
 
             else:
                 print("No such reasoning engine or invalid display name or resouce name")
-
     except Exception as e:
         print(e)
-
-    
 
 #--------------------------------[show_agents]----------------------------------
 

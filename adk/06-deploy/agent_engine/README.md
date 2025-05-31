@@ -32,7 +32,17 @@
     ```
 
 2. deploy and run agent
-    Command
+
+    1. deploy command
     ```
-    uv run -m agent_engine.deploy --agent_name 'shins777' --user_id forus --session_id forus123 --query 'What is the Generative AI?'
+    uv run -m agent_engine.deploy --agent_name 'shins777' --user_id forus --query 'What is the Generative AI?'
     ```
+    2. run command
+    ```
+    uv run -m agent_engine.run --resource_name projects/721521243942/locations/us-central1/reasoningEngines/112774708637728768 --user_id forus --session_id 8517270617299353600 --query 'What is the Generative AI?'
+    ```
+    * resource_name : resouce name of agent
+    * user_id : user id.
+    * session_id : it should be already existed in agent engine if you want to specify session_id.
+   
+
