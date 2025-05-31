@@ -1,4 +1,7 @@
-### Note for execute
+### Note to execute
+
+This source code was written on information from the following manual.   
+https://cloud.google.com/vertex-ai/generative-ai/docs/agent-engine/sessions/manage-sessions-adk
 
 0. Configuration.
     ```
@@ -18,12 +21,14 @@
     ```
     STAGING_BUCKET="gs://agent-0417"
     ```
+
 2. To deploy an agent, need to login to GCP and Vertex AI.
    * GCP Login
     ```
     gcloud auth application-default login 
     ```
    * Vertex AI 
+    The following code should be to create or update Agent engine in Vertex AI.
     ```
     vertexai.init(
         project=os.getenv("PROJECT_ID"),
@@ -34,16 +39,20 @@
 
 3. engine create and deploy
 
-    1. deploy command
+    1. Agent Engine creation
     ```
-    uv run -m agent_engine.deploy --agent_name 'shins777' --user_id forus --query 'What is the Generative AI?'
+    uv run -m agent_session.engine --agent_name forusone
     ```
-    2. run command
+
+    2. session test.
+    You can create a session and see the session in Agent Engine of Vertex AI in GCP Console. 
+    If you use same session id, you cna see the session information was persisted.
     ```
-    uv run -m agent_engine.run --resource_name projects/721521243942/locations/us-central1/reasoningEngines/112774708637728768 --user_id forus --session_id 8517270617299353600 --query 'What is the Generative AI?'
+    uv run -m agent_session.session --agent_engine_id 112774708637728768 --user_id forus --session_id 8517270617299353600
     ```
-    * resource_name : resouce name of agent
-    * user_id : user id.
-    * session_id : it should be already existed in agent engine if you want to specify session_id.
-   
+    
+    3. update Agent Engine.
+    ```
+    uv run -m agent_session.update --agent_engine_id 4971736494105427968
+    ```
 

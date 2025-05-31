@@ -60,40 +60,11 @@ def run_agent(agent_engine_id:str,
                    session_id = session.id, 
                    query = query)
 
-# #-----------------------------[update_remote_agent]-----------------------------
-
-# def update_remote_agent(resource_name:str):
-
-#     # Initialize Vertex AI to deploy Agent Engine. 
-#     vertexai.init(
-#         project=os.getenv("PROJECT_ID"),
-#         location=os.getenv("LOCATION"),
-#         staging_bucket=os.getenv("STAGING_BUCKET"),
-#     )
-
-#     requirements = [
-#         "google-adk[vertexai]",
-#         "google-cloud-aiplatform[adk,agent-engines]",
-#         "cloudpickle==3.0",
-#         "python-dotenv",
-#     ]
-#     print(f"\n Resource Name : {resource_name}\n")
-#     remote_agent_engine = get_agent_engine(resource_name = resource_name)
-#     # print(f"\n Reource name : {remote_agent_engine.display_name}\n")
-#     print(f"\n Remote Agent Engine : {remote_agent_engine}\n")
-    
-#     agent_engines.update(resource_name=remote_agent_engine.name, 
-#                          gcs_dir_name = os.getenv("STAGING_BUCKET"),
-#                          description = "AI information search assistant to user's question",                        
-#                          agent_engine=remote_agent_engine, 
-#                          requirements=requirements)
-
-
 #-----------------------------[__main__]-----------------------------
 
 if __name__ == "__main__":
     
-    print(""" Usage : uv run -m agent_session.runner --agent_engine_id 112774708637728768 --user_id forus --session_id 8517270617299353600 """)
+    print(""" Usage : uv run -m agent_session.session --agent_engine_id 112774708637728768 --user_id forus --session_id 8517270617299353600 """)
     
     parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")
     

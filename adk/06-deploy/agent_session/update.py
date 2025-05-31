@@ -43,7 +43,7 @@ def update_remote_agent(resource_name:str):
 
 if __name__ == "__main__":
     
-    print(""" Usage : uv run -m agent_session.deploy --agent_engine_id 4971736494105427968 """)
+    print(""" Usage : uv run -m agent_session.update --agent_engine_id 4971736494105427968 """)
     
     parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")    
     parser.add_argument("--agent_engine_id",type=str)
