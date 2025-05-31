@@ -38,7 +38,6 @@ async def run_agent(query: str):
 
     APP_NAME = "AI_assistant"
     USER_ID = "Forusone"
-    
 
     session_service = InMemorySessionService()
     session = session_service.create_session(app_name=APP_NAME,
@@ -48,12 +47,6 @@ async def run_agent(query: str):
                     session_service=session_service)
     
     content = types.Content(role='user', parts=[types.Part(text=query)])
-
-    # run_config = RunConfig(
-    #     response_modalities = ["TEXT"],
-    #     streaming_mode= StreamingMode.SSE,
-    #     max_llm_calls = 10
-    # )
 
     events = runner.run_async(user_id=session.user_id,
                               session_id=session.id,

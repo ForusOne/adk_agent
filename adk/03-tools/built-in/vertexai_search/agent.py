@@ -24,21 +24,23 @@ def get_vertex_search_tool():
     """
     Creates and configures a Vertex AI Search tool instance.
 
-    This function retrieves the required environment variables for project ID, location,
-    and datastore ID, constructs the full data store resource path, and initializes
-    a VertexAiSearchTool with that path. It prints the data store ID for verification.
+    This function loads required environment variables for project, location, project number,
+    and datastore ID, initializes the Vertex AI environment, constructs the data store resource path,
+    and returns a VertexAiSearchTool instance configured for the specified data store.
 
     Returns:
         VertexAiSearchTool: An instance configured to interact with the specified Vertex AI Search data store.
     """
 
-    PROJECT_ID = os.getenv('PROJECT_ID')
-    LOCATION = os.getenv('LOCATION')
+    PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT')
+    LOCATION = os.getenv('GOOGLE_CLOUD_LOCATION')
+    PROJECT_NUMBER = os.getenv('PROJECT_NUMBER')
     DATASTORE_ID = os.getenv('DATASTORE_ID')
 
-    vertexai.init(project=os.getenv("PROJECT_ID"), location=os.getenv("LOCATION"))
+    vertexai.init(project=PROJECT_ID, location=LOCATION)
 
-    data_store_id = f"projects/{PROJECT_ID}/locations/{LOCATION}/collections/default_collection/dataStores/{DATASTORE_ID}"
+    data_store_id = f"projects/{PROJECT_NUMBER}/locations/{LOCATION}/collections/default_collection/dataStores/{DATASTORE_ID}"
+    
     print("Vertex AI Search : Data store ID : \n", data_store_id)
 
     vertex_search_tool = VertexAiSearchTool(data_store_id=data_store_id)
@@ -63,11 +65,6 @@ def build_agent() -> Agent:
     INSTRUCTION = """
         You are an agent that provides answers to users' questions.
         When a user enters a question, you must perform a search on the 'vertex_search_tool' for that question and provide an answer based on the results.
-        When you provide an answer, you must follow the following format.
-
-        1. Question: 
-        2. Search sources: 
-        3. Answer: 
 
         Note : When answering, Must be sure to use the same language the user used when asking the question. 
         
