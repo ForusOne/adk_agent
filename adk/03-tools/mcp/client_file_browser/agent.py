@@ -54,16 +54,25 @@ def mcp_toolset(target_folder_path: str):
     return file_system_toolset
 
 def build_agent() -> LlmAgent:
+    """
+    Creates and configures an LlmAgent instance with an MCPToolset for file system management.
 
+    This function defines the agent's instruction template and initializes the LlmAgent with a name,
+    model, description, instruction, and a tool for managing files in a specified folder via MCP.
+    The agent is designed to help users manage their files and answer questions using the file system toolset.
+
+    Returns:
+        LlmAgent: A configured LlmAgent instance ready to process file management queries using MCPToolset.
+    """
 
     INSTRUCTION = """
-        
-        Help the user manage their files in the given folder.
-                
+        You are an agent who help the user manage their files in the given folder.
+        When a user enters a question, you should perform a 'file_system_toolset' for that question and provide an answer based on the results.
+
+        Note: When answering, Must be sure to use the same language the user used when asking the question.       
     """
 
     target_folder_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "/")
-
     file_system_toolset = mcp_toolset(target_folder_path=target_folder_path)
 
     agent = LlmAgent(

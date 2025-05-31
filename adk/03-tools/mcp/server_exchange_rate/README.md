@@ -29,4 +29,4 @@
     adk web
     ```
     
-    question : List up file in client_file_browser
+    question : Show the exchange rate between Korean Won and US dollar.
