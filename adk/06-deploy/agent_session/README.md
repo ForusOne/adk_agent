@@ -32,7 +32,7 @@
     )    
     ```
 
-3. deploy and run agent
+3. engine create and deploy
 
     1. deploy command
     ```
