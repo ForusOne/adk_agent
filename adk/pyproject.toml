@@ -6,13 +6,15 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "anyio>=4.9.0",
-    "google-adk[vertexai]>=0.5.0",
+    "google-adk[vertexai]==1.1.1",
     "google-cloud-aiplatform[adk,agent-engines]>=1.93.0",
     "google-genai>=1.15.0",
     "langchain>=0.3.25",
     "langchain-community>=0.3.24",
     "litellm>=1.70.4",
     "llama-index>=0.12.39",
+    "mcp>=1.9.0",
+    "npx>=0.1.6",
     "ollama>=0.4.9",
     "pandas>=2.2.3",
     "pytest>=8.3.5",

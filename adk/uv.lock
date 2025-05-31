@@ -20,6 +20,8 @@ dependencies = [
     { name = "langchain-community" },
     { name = "litellm" },
     { name = "llama-index" },
+    { name = "mcp" },
+    { name = "npx" },
     { name = "ollama" },
     { name = "pandas" },
     { name = "pytest" },
@@ -32,13 +34,15 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "anyio", specifier = ">=4.9.0" },
-    { name = "google-adk", extras = ["vertexai"], specifier = ">=0.5.0" },
+    { name = "google-adk", extras = ["vertexai"], specifier = "==1.1.1" },
     { name = "google-cloud-aiplatform", extras = ["adk", "agent-engines"], specifier = ">=1.93.0" },
     { name = "google-genai", specifier = ">=1.15.0" },
     { name = "langchain", specifier = ">=0.3.25" },
     { name = "langchain-community", specifier = ">=0.3.24" },
     { name = "litellm", specifier = ">=1.70.4" },
     { name = "llama-index", specifier = ">=0.12.39" },
+    { name = "mcp", specifier = ">=1.9.0" },
+    { name = "npx", specifier = ">=0.1.6" },
     { name = "ollama", specifier = ">=0.4.9" },
     { name = "pandas", specifier = ">=2.2.3" },
     { name = "pytest", specifier = ">=8.3.5" },
@@ -509,7 +513,7 @@ wheels = [
 
 [[package]]
 name = "google-adk"
-version = "0.5.0"
+version = "1.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "authlib" },
@@ -533,9 +537,9 @@ dependencies = [
     { name = "tzlocal" },
     { name = "uvicorn" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/89/3e/90b9d622c0381aa12f861d0bc7ad10b148febb9da95a27836629aa7cf5f8/google_adk-0.5.0.tar.gz", hash = "sha256:6f6493889a02ce5ed1797caa6385307914b16dcb086bad02c1ad314d609075db", size = 1055492 }
+sdist = { url = "https://files.pythonhosted.org/packages/0f/38/a67f59a3ecf9630d93007848ec3f41beec4415014e3fd1fa8f159c7e85fc/google_adk-1.1.1.tar.gz", hash = "sha256:9418675574d2e9fd8a3c8e423186b86fe4ad3f211dd5da400cf24f1ef39fe2d7", size = 1094600 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b8/ca/761423fed60efe07e487acc867f9d3c3bfb2cba3096bbd4a84d6ac8cddb6/google_adk-0.5.0-py3-none-any.whl", hash = "sha256:4a2f2dcad337f51779af4b654579fcc0f296d8aab5db0a7855a2275722af5a24", size = 1184678 },
+    { url = "https://files.pythonhosted.org/packages/53/1d/cefb793fed19159e8a1975cb1767288b848b9c14020f70c1f0c8048a706c/google_adk-1.1.1-py3-none-any.whl", hash = "sha256:c6cdca1b9cab7126efa4984abaff2d7b26da7945da9e6b0e2e6ea1727fb3f966", size = 1235870 },
 ]
 
 [[package]]
@@ -1736,6 +1740,17 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/3c/87/db8be88ad32c2d042420b6fd9ffd4a149f9a0d7f0e86b3f543be2eeeedd2/nltk-3.9.1.tar.gz", hash = "sha256:87d127bd3de4bd89a4f81265e5fa59cb1b199b27440175370f7417d2bc7ae868", size = 2904691 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4d/66/7d9e26593edda06e8cb531874633f7c2372279c3b0f46235539fe546df8b/nltk-3.9.1-py3-none-any.whl", hash = "sha256:4fa26829c5b00715afe3061398a8989dc643b92ce7dd93fb4585a70930d168a1", size = 1505442 },
+]
+
+[[package]]
+name = "npx"
+version = "0.1.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/10/5f/bedde14c7f0a03af8e1c06a66f3cf4bc44646ce67d1adfa455851e70c2cf/npx-0.1.6-py3-none-any.whl", hash = "sha256:42311219c2af12470c6785f49c366798d67f3583aea18d73c2679d3eb13359a9", size = 10620 },
 ]
 
 [[package]]
