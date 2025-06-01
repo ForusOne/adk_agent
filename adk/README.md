@@ -78,3 +78,5 @@ Run the unit test
 
 Type in the chat : What is Generative AI ?
 
+If your test is ok, you can see the following output.
+![adk_web](https://github.com/ForusOne/adk_agent/blob/main/images/adk_web.png?raw=true)
