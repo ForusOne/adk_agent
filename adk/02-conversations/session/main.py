@@ -14,7 +14,7 @@ if __name__ == "__main__":
     load_dotenv()
 
     print("Running the agent...")
-    print("Usage : python main.py --type <session_type> --app_name <app_name> --user_id <user_id> --session_id <session_id>")
+    print("Usage : uv run -m session.main --type <session_type> --app_name <app_name> --user_id <user_id> --session_id <session_id>")
     print("Usage : session type : in_memory, database, vertexai")
 
     parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")

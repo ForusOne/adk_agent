@@ -30,7 +30,7 @@ async def run_agent( app_name: str,
     """
 
     session_service = InMemorySessionService()
-    session = session_service.create_session(app_name=app_name, 
+    session = await session_service.create_session(app_name=app_name, 
                                             user_id=user_id, 
                                             session_id=session_id)
 
@@ -57,7 +57,7 @@ async def run_agent( app_name: str,
                 final_response = event.content.parts[0].text            
                 print("\n 🤖 AI Assistant: " + final_response)
 
-        updated_session = session_service.get_session(app_name = app_name, 
+        updated_session = await session_service.get_session(app_name = app_name, 
                                                      user_id = user_id, 
                                                      session_id = session_id)
 

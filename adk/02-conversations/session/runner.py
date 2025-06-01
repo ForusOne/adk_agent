@@ -1,7 +1,7 @@
 import asyncio
 from google.genai import types
 from google.adk.sessions import BaseSessionService
-from google.adk.runners import Runner, RunConfig, StreamingMode
+from google.adk.runners import Runner
 
 from session import agent
 
@@ -37,7 +37,7 @@ async def run_agent(
     if agent_engine_app_name != None:
         app_name = agent_engine_app_name
 
-    existing_sessions = session_service.list_sessions(
+    existing_sessions = await session_service.list_sessions(
         app_name=app_name,
         user_id=user_id,
     )
@@ -48,7 +48,7 @@ async def run_agent(
         print(f"Continuing existing session: {session_id}")
     else:
         # Create a new session with initial state
-        new_session = session_service.create_session(
+        new_session = await session_service.create_session(
             app_name=app_name,
             user_id=user_id,
             state=None,
@@ -60,25 +60,19 @@ async def run_agent(
     runner = Runner(agent=agent.root_agent,
                     app_name=app_name,
                     session_service=session_service)
-    
-    run_config = RunConfig(
-        response_modalities = ["TEXT"],
-        streaming_mode= StreamingMode.SSE,
-        max_llm_calls = 10
-    )
 
     while True:
 
-        user_input = input("\n 👤 User: ")
-        if user_input.lower() == "exit":
+        query = input("\n 👤 User: ")
+        if query.lower() == "exit":
             break
 
-        content = types.Content(role='user', parts=[types.Part(text=user_input)])
+        content = types.Content(role='user', parts=[types.Part(text=query)])
 
         events = runner.run_async(user_id=user_id,
                                 session_id=session_id,
                                 new_message=content,
-                                run_config=run_config)
+                                )
 
         async for event in events:
             await asyncio.create_task(print_session(app_name = app_name,
@@ -113,7 +107,7 @@ async def print_session(app_name: str,
         None
     """
 
-    session  = session_service.get_session(app_name=app_name,
+    session  = await session_service.get_session(app_name=app_name,
                                 user_id=user_id,
                                 session_id=session_id,)
     

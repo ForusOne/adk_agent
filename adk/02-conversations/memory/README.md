@@ -1,4 +1,4 @@
-# ADK Memory Conversation Agent
+# ADK Memory Conversation Agent - Memory
 
 This folder demonstrates how to build and operate a conversational AI agent with memory capabilities using the ADK (Agent Development Kit) framework. The agent can answer user queries by performing a Google search and can also recall information from previous sessions using a memory service.
 
@@ -8,7 +8,7 @@ The Memory Conversation Agent is designed to:
 - Support both in-memory and Vertex AI RAG corpus memory backends
 - Demonstrate a multi-step workflow: search, store, recall
 
-## .env
+## .env Example
 
 Note : This file should be located in the **parent upper folder**.
 
@@ -22,7 +22,7 @@ LOCATION = "us-central1"
 MODEL = "gemini-2.0-flash"
 
 # For memory store in RAG Engine
-CORPUS_ID = "55253532343830177280" <-- you should use your RAG Engine corpus ID.
+CORPUS_ID = "55253532324830177280" <-- you should use your RAG Engine corpus ID.
 
 ```
 
@@ -92,7 +92,7 @@ uv run -m memory.main --memory_type in_memory --app_name search_assistant --user
 
 First, you have to set up the RAG Engine in Vertex AI.
 ```
-CORPUS_ID = "5525353792830177280"
+CORPUS_ID = "552535334330177280"
 ```
 Then, login to GCP to access to the RAG Engine. use the following command.
 ```
@@ -104,7 +104,7 @@ uv run -m memory.main --memory_type rag_corpus --app_name search_assistant --use
 ```
 if you don't have an access to the RAG engine. you could see the following error message.
 ```
-RuntimeError: ('Failed in indexing the RagFile due to: ', {'code': 403, 'message': "Permission 'aiplatform.ragFiles.upload' denied on resource '//aiplatform.googleapis.com/projects/ai-hangsik/locations/us-central1/ragCorpora/5525353792830177280' (or it may not exist)."
+RuntimeError: ('Failed in indexing the RagFile due to: ', {'code': 403, 'message': "Permission 'aiplatform.ragFiles.upload' denied on resource '//aiplatform.googleapis.com/projects/ai-forus/locations/us-central1/ragCorpora/552535232177280' (or it may not exist)."
 ```
 
 ---

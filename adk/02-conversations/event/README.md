@@ -1,6 +1,21 @@
-# ADK Event Conversation Agent
+# ADK Event Conversation Agent - Event
 
 This folder demonstrates how to build and operate an event-driven conversational AI agent using the ADK (Agent Development Kit) framework. The agent is designed to answer user queries by performing a Google search and providing structured responses, while the runner script showcases detailed event streaming and introspection.
+
+## .env Example
+
+Place your `.env` file in the parent folder (e.g., `adk/02-conversations/`). Example:
+
+```
+GOOGLE_GENAI_USE_VERTEXAI=FALSE
+GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
+PROJECT_ID=your-project-id
+PROJECT_NUMBER=your-project-number
+LOCATION=us-central1
+MODEL=gemini-2.0-flash
+```
+
+---
 
 ## Folder Structure
 
@@ -20,34 +35,6 @@ adk/02-conversations/event/
   Marks the folder as a Python package.
 
 ---
-
-
-## .env Example
-
-Place your `.env` file in the parent folder (e.g., `adk/02-conversations/`). Example:
-
-```
-GOOGLE_GENAI_USE_VERTEXAI=FALSE
-GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
-PROJECT_ID=your-project-id
-PROJECT_NUMBER=your-project-number
-LOCATION=us-central1
-MODEL=gemini-2.0-flash
-```
-
-## .env
-
-Note : This file should be located in the **parent upper folder**.
-
-```
-GOOGLE_GENAI_USE_VERTEXAI=FALSE
-GOOGLE_API_KEY=AIzerD6uPZRFklK--------WYZVM2uZh6Bd8 <-- you should use your key.
-
-PROJECT_ID = "ai-forus"
-PROJECT_NUMBER = "9215---43942"
-LOCATION = "us-central1"
-MODEL = "gemini-2.0-flash"
-```
 
 ## Example Usage
 Note : Execute the following command on **01-conversations** folder. 
