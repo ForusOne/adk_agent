@@ -5,6 +5,17 @@ This folder demonstrates how to build and operate an advanced AI agent using the
 
 ---
 
+## Overview
+
+The `runtime` agent example shows how to:
+- Define a root agent with sub-agents for positive and negative critique
+- Optionally use agent tools to wrap sub-agents
+- Load environment variables for configuration
+- Instantiate and return an ADK `Agent` object
+- Run the agent in a conversational loop using a runner script
+
+---
+
 ## Event Loop
 The following image explain the most important concept : event loop in ADK runtime.
 
@@ -19,14 +30,6 @@ Image source : https://google.github.io/adk-docs/runtime/#core-idea-the-event-lo
 Image source : https://google.github.io/adk-docs/runtime/#how-it-works-a-simplified-invocation
 
 
-## Overview
-
-The `runtime` agent example shows how to:
-- Define a root agent with sub-agents for positive and negative critique
-- Optionally use agent tools to wrap sub-agents
-- Load environment variables for configuration
-- Instantiate and return an ADK `Agent` object
-- Run the agent in a conversational loop using a runner script
 
 ## File Structure
 ```
