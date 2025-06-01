@@ -3,6 +3,17 @@
 
 This folder demonstrates how to build and operate an advanced AI agent using the ADK (Agent Development Kit) framework, featuring sub-agents and agent tools for critique tasks.
 
+The following image explain the most important concept : event loop in ADK runtime.
+
+![event loop](https://google.github.io/adk-docs/assets/event-loop.png)
+Image source : https://google.github.io/adk-docs/runtime/#core-idea-the-event-loop
+
+
+![invocation flow](https://google.github.io/adk-docs/assets/invocation-flow.png)
+Image source : https://google.github.io/adk-docs/runtime/#how-it-works-a-simplified-invocation
+
+
+
 ## Overview
 
 The `runtime` agent example shows how to:
