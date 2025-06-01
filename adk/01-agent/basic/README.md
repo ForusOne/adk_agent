@@ -11,6 +11,20 @@ The `basic` agent is a minimal example that shows how to:
 - Instantiate and return an ADK `Agent` object
 - Run the agent to answer user queries in a structured format
 
+## .env
+
+Note : This file should be located in the **parent upper folder**.
+
+```
+GOOGLE_GENAI_USE_VERTEXAI=FALSE
+GOOGLE_API_KEY=AIzerD6uPZRFklKWYZVM2uZh6Bd8 <-- you should use your key.
+
+PROJECT_ID = "ai-forus"
+PROJECT_NUMBER = "921543942"
+LOCATION = "us-central1"
+MODEL = "gemini-2.0-flash"
+```
+
 ## File Structure
 ```
 adk/01-agent/basic/
@@ -24,19 +38,7 @@ adk/01-agent/basic/
 - `__init__.py`  
   Marks the folder as a Python package.
 
-## .env
 
-Note : This file should be located in the **parent upper folder**.
-
-```
-GOOGLE_GENAI_USE_VERTEXAI=FALSE
-GOOGLE_API_KEY=AIzerD6uPZRFklK--------WYZVM2uZh6Bd8 <-- you should use your key.
-
-PROJECT_ID = "ai-forus"
-PROJECT_NUMBER = "9215---43942"
-LOCATION = "us-central1"
-MODEL = "gemini-2.0-flash"
-```
 
 ## Example Usage
 Note : Execute the following command on **01-agent** folder. 
