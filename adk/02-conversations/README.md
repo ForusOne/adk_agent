@@ -4,6 +4,11 @@ This directory contains advanced conversation agent examples using the Agent Dev
 
 ---
 
+
+## Session, Event and State
+The following image explain the most important concept : event loop in ADK runtime.
+<img src="https://github.com/ForusOne/adk_agent/blob/main/images/session_state_events.png?raw=true" alt="drawing" width="600"/>
+
 ## Subfolders Overview
 
 ### 1. `event/` — Event-Driven Conversation Agent
