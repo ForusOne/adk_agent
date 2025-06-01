@@ -1,5 +1,5 @@
 
-# ADK Basic Agent Example
+# ADK Basic Agent Example - Basic concept of ADK
 
 This folder demonstrates how to build and operate a simple AI agent using the ADK (Agent Development Kit) framework.
 

@@ -1,4 +1,4 @@
-# ADK Search Agent
+# ADK Search Agent - Use Google Search Tool 
 
 This folder provides an example of an agent implementation using the Agent Development Kit (ADK) with Google Search integration. The agent is designed to answer user queries by leveraging both its own knowledge and real-time search results.
 
@@ -23,10 +23,10 @@ Note : This file should be located in the **parent upper folder**.
 
 ```
 GOOGLE_GENAI_USE_VERTEXAI=FALSE
-GOOGLE_API_KEY=AIzerD6uPZRFklK--------WYZVM2uZh6Bd8 <-- you should use your key.
+GOOGLE_API_KEY=AIzerD6uPZRFklKWYZVM2uZh6Bd8 <-- you should use your key.
 
 PROJECT_ID = "ai-forus"
-PROJECT_NUMBER = "9215---43942"
+PROJECT_NUMBER = "921543942"
 LOCATION = "us-central1"
 MODEL = "gemini-2.0-flash"
 ```

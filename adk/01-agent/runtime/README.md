@@ -1,5 +1,5 @@
 
-# ADK Runtime Agent Example
+# ADK Runtime Agent Example - Understanding ADK Runtime.
 
 This folder demonstrates how to build and operate an advanced AI agent using the ADK (Agent Development Kit) framework, featuring sub-agents and agent tools for critique tasks.
 
