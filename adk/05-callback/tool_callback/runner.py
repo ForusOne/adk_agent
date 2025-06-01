@@ -38,7 +38,7 @@ async def run_agent(user_query: str):
     USER_ID = "Forusone"
 
     session_service = InMemorySessionService()
-    session = session_service.create_session(app_name=APP_NAME,
+    session = await session_service.create_session(app_name=APP_NAME,
                                             user_id=USER_ID,
                                             )
     
