@@ -2,10 +2,20 @@
 
 This directory contains a comprehensive set of examples for integrating various types of tools into ADK (Agent Development Kit) agents. Each subfolder demonstrates a different approach to tool integration, including built-in tools, function tools, LangChain tools, and Model Context Protocol (MCP) tools. Use these examples to learn how to extend agent capabilities with real-world data, web search, code execution, and external system integration.
 
+
+## Tool
+
+A tool is typically a modular code component—like a Python/ Java function. that is invoked by LLM after verifying the purpose of tools(functions)
+
+![tool flow](https://google.github.io/adk-docs/assets/agent-tool-call.png)
+Image source : https://google.github.io/adk-docs/tools/#what-is-a-tool
+
+
+## Tool calling flow
+
 ![tool flow](https://google.github.io/adk-docs/assets/quickstart-flow-tool.png)
 Image source : https://google.github.io/adk-docs/get-started/quickstart/#create-agent-project
 
----
 
 ## Subfolders & Summaries
 
@@ -38,8 +48,6 @@ Image source : https://google.github.io/adk-docs/get-started/quickstart/#create-
 - **Key Examples:**
   - [`client_file_browser/`](mcp/client_file_browser/README.md): File browser agent via MCP.
   - [`server_exchange_rate/`](mcp/server_exchange_rate/README.md): Exchange rate agent via custom MCP server.
-
----
 
 ## Getting Started
 
