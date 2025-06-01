@@ -11,8 +11,11 @@
     ```
     uv run -m basic.client 'hi how are you? '
     ```
+4. check agent card.
 
-
+    ```
+    curl http://0.0.0.0:7777/.well-known/agent.json
+    ```
 
 
 
