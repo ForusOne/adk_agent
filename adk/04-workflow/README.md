@@ -2,7 +2,10 @@
 
 This directory contains advanced workflow agent examples using the Agent Development Kit (ADK). Each subfolder demonstrates a different approach to orchestrating multi-step, modular, and iterative agent workflows, including custom, general, loop, parallel, and sequential patterns.
 
----
+## Workflow agent
+
+![Workflow agent](https://google.github.io/adk-docs/assets/agent-types.png)
+Image source : https://google.github.io/adk-docs/agents/#agents
 
 ## Subfolders Overview
 

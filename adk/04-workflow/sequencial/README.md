@@ -2,8 +2,6 @@
 
 This folder demonstrates how to build and operate a sequential workflow agent using the ADK (Agent Development Kit) framework. The agent is designed to answer user questions by running positive and negative critique sub-agents in sequence, then summarizing the results with a review agent.
 
----
-
 ## Overview
 
 The Sequential Workflow Agent is designed to:
@@ -12,7 +10,11 @@ The Sequential Workflow Agent is designed to:
 - Use the language of the user's input for all responses
 - Demonstrate modular agent design using ADK's sequential agent architecture
 
----
+## Sequential agent
+
+![Sequential agent](https://google.github.io/adk-docs/assets/sequential-agent.png)
+Image source : https://google.github.io/adk-docs/agents/workflow-agents/sequential-agents/
+
 
 ## .env Example
 
@@ -27,7 +29,6 @@ PROJECT_NUMBER = "921543942"
 LOCATION = "us-central1"
 MODEL = "gemini-2.0-flash"
 ```
----
 
 ## Folder Structure
 
@@ -47,14 +48,10 @@ adk/04-workflow/sequencial/
   Marks the folder as a Python package.
 
 
----
-
 ## Agent Details (`agent.py`)
 
 - Uses `SequentialAgent` to run `positive_critic`, `negative_critic`, and `review_critic` sub-agents in order
 - Returns a single agent ready to process user queries through this sequential workflow
-
----
 
 ## Sub-Agents (`sub_agent.py`)
 
@@ -70,14 +67,13 @@ adk/04-workflow/sequencial/
   - Summarizes the positive and negative critiques and provides a final summary
   - Responds in the user's language
 
----
+
 ## Example Usage
 Note : Execute the following command on **04-workflow** folder. 
 
 ```
 ai_agent/adk/04-workflow $ adk web
 ```
----
 
 ## License
 

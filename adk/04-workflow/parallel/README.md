@@ -2,9 +2,6 @@
 
 This folder demonstrates how to build and operate a parallel workflow agent using the ADK (Agent Development Kit) framework. The agent is designed to answer user questions by running positive and negative critique sub-agents in parallel, then summarizing the results with a review agent in a sequential pipeline.
 
-
----
-
 ## Overview
 
 The Parallel Workflow Agent is designed to:
@@ -13,8 +10,10 @@ The Parallel Workflow Agent is designed to:
 - Use the language of the user's input for all responses
 - Demonstrate modular agent design using ADK's parallel and sequential agent architecture
 
----
+## Parallel agent
 
+![Parallel agent](https://google.github.io/adk-docs/assets/parallel-agent.png)
+Image source : https://google.github.io/adk-docs/agents/workflow-agents/parallel-agents
 
 ## .env Example
 
@@ -29,8 +28,6 @@ PROJECT_NUMBER = "921543942"
 LOCATION = "us-central1"
 MODEL = "gemini-2.0-flash"
 ```
-
----
 
 ## Folder Structure
 
@@ -49,16 +46,11 @@ adk/04-workflow/parallel/
 - `__init__.py`  
   Marks the folder as a Python package.
 
-
----
-
 ## Agent Details (`agent.py`)
 
 - Uses `ParallelAgent` to run `positive_critic` and `negative_critic` sub-agents in parallel
 - Uses `SequentialAgent` to orchestrate the workflow: (parallel critiques) → review
 - Returns a single agent ready to process user queries through this parallel and sequential workflow
-
----
 
 ## Sub-Agents (`sub_agent.py`)
 
@@ -74,14 +66,14 @@ adk/04-workflow/parallel/
   - Summarizes the positive and negative critiques and provides a final summary
   - Responds in the user's language
 
----
+
 ## Example Usage
 Note : Execute the following command on **04-workflow** folder. 
 
 ```
 ai_agent/adk/04-workflow $ adk web
 ```
----
+
 
 ## License
 

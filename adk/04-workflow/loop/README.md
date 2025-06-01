@@ -13,8 +13,10 @@ The Loop Workflow Agent is designed to:
 - Summarize and conclude based on the final answer and critiques
 - Use the language of the user's input for all responses
 
+## Loop agent
 
----
+![Loop agent](https://google.github.io/adk-docs/assets/loop-agent.png)
+Image source : https://google.github.io/adk-docs/agents/workflow-agents/loop-agents/#loop-agents
 
 ## .env Example
 
@@ -29,7 +31,6 @@ PROJECT_NUMBER = "921543942"
 LOCATION = "us-central1"
 MODEL = "gemini-2.0-flash"
 ```
----
 
 ## Folder Structure
 
@@ -48,15 +49,12 @@ adk/04-workflow/loop/
 - `__init__.py`  
   Marks the folder as a Python package.
 
----
 
 ## Agent Details (`agent.py`)
 
 - Uses `LoopAgent` to perform iterative critique and refinement (up to 3 iterations)
 - Uses `SequentialAgent` to orchestrate the workflow: research → (critique/refine loop) → conclusion
 - Returns a single agent ready to process user queries through this multi-step workflow
-
----
 
 ## Sub-Agents and Tools (`sub_agent.py`)
 
@@ -66,7 +64,6 @@ adk/04-workflow/loop/
 - **`conclusion_agent`**: Summarizes the final answer and critiques, providing a final summary
 - **`exit_loop` tool**: Allows the loop to exit early if the answer is deemed complete
 
----
 
 ## Example Workflow
 
@@ -85,8 +82,6 @@ Note : Execute the following command on **04-workflow** folder.
 ```
 ai_agent/adk/04-workflow $ adk web
 ```
-
----
 
 ## License
 
