@@ -14,11 +14,11 @@
 
 from google.genai import types
 from google.adk.sessions import InMemorySessionService
-from google.adk.runners import Runner, RunConfig, StreamingMode
+from google.adk.runners import Runner
 
 from runtime import agent
 
-async def run_agent(query: str):
+async def run_agent():
     """
     Asynchronously runs the AI agent with the provided user query.
 
@@ -26,41 +26,38 @@ async def run_agent(query: str):
     to the agent. It streams the agent's responses and prints the final response to the console.
 
     Args:
-        query (str): The user's input or question to be processed by the agent.
-
+        None
     Returns:
         None
     """
-
-    print(f"\n 👤 User: {query}\n")
 
     APP_NAME = "AI_assistant"
     USER_ID = "Forusone"
 
     session_service = InMemorySessionService()
-    session = session_service.create_session(app_name=APP_NAME,
+    session = await session_service.create_session(app_name=APP_NAME,
                                             user_id=USER_ID)
+    
     runner = Runner(agent=agent.root_agent,
                     app_name=session.app_name,
                     session_service=session_service)
     
-    content = types.Content(role='user', parts=[types.Part(text=query)])
+    while True:
 
-    run_config = RunConfig(
-        response_modalities = ["TEXT"],
-        streaming_mode= StreamingMode.SSE,
-        max_llm_calls = 10
-    )
+        query = input("\n 👤 User: ")
+        if query.strip().lower() in ["exit","quit"]:
+            break
+        
+        content = types.Content(role='user', parts=[types.Part(text=query)])
 
-    events = runner.run_async(user_id=session.user_id,
-                              session_id=session.id,
-                              new_message=content,
-                              run_config=run_config)
+        events = runner.run_async(user_id=session.user_id,
+                                session_id=session.id,
+                                new_message=content,)
 
-    async for event in events:
-        if event.is_final_response():
-            final_response = event.content.parts[0].text            
-            print(f"\n 🤖 AI Assistant: {final_response}\n")
+        async for event in events:
+            if event.is_final_response():
+                final_response = event.content.parts[0].text            
+                print(f"\n 🤖 AI Assistant: {final_response}\n")
 
 if __name__ == "__main__":
     import asyncio
@@ -69,8 +66,4 @@ if __name__ == "__main__":
     print("Running the agent...")
 
     parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")
-    parser.add_argument("--query",type=str,help="The query/message to send to the agent.",)
-    
-    args = parser.parse_args()
-    
-    asyncio.run(run_agent(query=args.query))
+    asyncio.run(run_agent())    
