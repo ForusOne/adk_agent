@@ -9,6 +9,10 @@ The following image explain the most important concept : event loop in ADK runti
 
 ![adk component](https://github.com/ForusOne/adk_agent/blob/main/images/adk_components.png?raw=true)
 
+## Agent Hierarchy.
+ADK is a framework to configure multi-agent system in a process.  You can use sub agent and tool to implement multi-agent system.
+
+![Agent Hierarchy](https://github.com/ForusOne/adk_agent/blob/main/images/multi-agent.png?raw=true)
 
 ## Subfolders Overview
 
