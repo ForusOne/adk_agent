@@ -69,6 +69,7 @@ def build_agent() -> Agent:
         Note : When answering, Must be sure to use the same language the user used when asking the question. 
         
     """
+    
     vertex_search_tool = get_vertex_search_tool()
 
     vertexai_search = Agent(
