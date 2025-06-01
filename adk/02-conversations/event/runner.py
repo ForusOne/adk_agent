@@ -14,11 +14,11 @@
 
 from google.genai import types
 from google.adk.sessions import InMemorySessionService
-from google.adk.runners import Runner, RunConfig, StreamingMode
+from google.adk.runners import Runner
 
 from event import agent
 
-async def run_agent(query: str):
+async def run_agent():
 
     """
     Asynchronously runs the AI agent with the provided user query.
@@ -28,64 +28,62 @@ async def run_agent(query: str):
     the final response from the agent in the console.
 
     Args:
-        query (str): The user's input or question to be processed by the agent.
-
+        None
     Returns:
         None
     """
-
-    print(f"\n 👤 User: {query}\n")
 
     APP_NAME = "AI_assistant"
     USER_ID = "Forusone"
 
     session_service = InMemorySessionService()
-    session = session_service.create_session(app_name=APP_NAME,
+    session = await session_service.create_session(app_name=APP_NAME,
                                             user_id=USER_ID,
                                             state={"initial_key": "initial_value"})
     runner = Runner(agent=agent.root_agent,
                     app_name=session.app_name,
                     session_service=session_service)
     
-    content = types.Content(role='user', parts=[types.Part(text=query)])
 
-    run_config = RunConfig(
-        response_modalities = ["TEXT"],
-        streaming_mode= StreamingMode.SSE,
-        max_llm_calls = 10
-    )
+    while True:
 
-    events = runner.run_async(user_id=session.user_id,
-                              session_id=session.id,
-                              new_message=content,
-                              run_config=run_config)
+        query = input("\n 👤 User: ")
+        if query.strip().lower() in ["exit","quit"]:
+            break
 
-    async for event in events:
-        print("\n\n-------------------------")
-        print(f"event : {event}")
-        print("-------------------------\n\n")
+        content = types.Content(role='user', parts=[types.Part(text=query)])
 
-        print(f"event.invocation_id: {event.invocation_id}")
-        print(f"event.author: {event.author}")
-        print(f"event.actions: {event.actions}")
-        print(f"event.long_running_tool_ids: {event.long_running_tool_ids}")
-        print(f"event.branch: {event.branch}")    
-        print(f"event.id: {event.id}")
-        print(f"event.get_function_calls(): {event.get_function_calls()}")        
-        print(f"event.get_function_responses(): {event.get_function_responses()}")        
-        print(f"event.has_trailing_code_execution_result(): {event.has_trailing_code_execution_result()}")        
-        print(f"event.is_final_response(): {event.is_final_response()}")        
-        
-        if event.grounding_metadata is not None:
-            print("\n\n-----------< Grounding service information >--------------")
-            for grounding_chunk in event.grounding_metadata.grounding_chunks:
-                print(f"\n\n--------[ Title: {grounding_chunk.web.title} ]----------")
-                print(f"* grounding_chunk.web.domain: {grounding_chunk.web.domain}")
-                print(f"* grounding_chunk.web.url: {grounding_chunk.web.uri}")
-               
-        if event.is_final_response():
-            final_response = event.content.parts[0].text            
-            print(f"\n 🤖 AI Assistant: {final_response}\n")
+        events = runner.run_async(user_id=session.user_id,
+                                session_id=session.id,
+                                new_message=content,
+                                )
+
+        async for event in events:
+            print("\n\n-------------------------")
+            print(f"event : {event}")
+            print("-------------------------\n\n")
+
+            print(f"event.invocation_id: {event.invocation_id}")
+            print(f"event.author: {event.author}")
+            print(f"event.actions: {event.actions}")
+            print(f"event.long_running_tool_ids: {event.long_running_tool_ids}")
+            print(f"event.branch: {event.branch}")    
+            print(f"event.id: {event.id}")
+            print(f"event.get_function_calls(): {event.get_function_calls()}")        
+            print(f"event.get_function_responses(): {event.get_function_responses()}")        
+            print(f"event.has_trailing_code_execution_result(): {event.has_trailing_code_execution_result()}")        
+            print(f"event.is_final_response(): {event.is_final_response()}")        
+            
+            if event.grounding_metadata is not None:
+                print("\n\n-----------< Grounding service information >--------------")
+                for grounding_chunk in event.grounding_metadata.grounding_chunks:
+                    print(f"\n\n--------[ Title: {grounding_chunk.web.title} ]----------")
+                    print(f"* grounding_chunk.web.domain: {grounding_chunk.web.domain}")
+                    print(f"* grounding_chunk.web.url: {grounding_chunk.web.uri}")
+                
+            if event.is_final_response():
+                final_response = event.content.parts[0].text            
+                print(f"\n 🤖 AI Assistant: {final_response}\n")
 
 if __name__ == "__main__":
     import asyncio
@@ -94,10 +92,5 @@ if __name__ == "__main__":
     print("Running the agent...")
 
     parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")
-    parser.add_argument(
-        "--query",
-        type=str,
-        help="The query/message to send to the agent.",
-    )
     args = parser.parse_args()
-    asyncio.run(run_agent(query=args.query))
+    asyncio.run(run_agent())

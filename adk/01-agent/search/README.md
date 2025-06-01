@@ -31,10 +31,14 @@ LOCATION = "us-central1"
 MODEL = "gemini-2.0-flash"
 ```
 
-## Execution
+## Example Usage
 Note : Execute the following command on **01-agent** folder. 
 
 ```
 ai_agent/adk/01-agent$ adk web
 ```
 
+
+## License
+
+This project is licensed under the Apache License 2.0.

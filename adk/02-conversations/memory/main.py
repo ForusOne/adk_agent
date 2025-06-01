@@ -28,7 +28,7 @@ if __name__ == "__main__":
     load_dotenv()
 
     print("Running the agent...")
-    print("Usage : python main.py --memory_type [in_memory|rag_corpus] --app_name <app_name> --user_id <user_id>")
+    print("Usage : uv run memory.main --memory_type [in_memory|rag_corpus] --app_name <app_name> --user_id <user_id>")
     print("Usage : memory_type : in_memory, rag_corpus")
 
     parser = argparse.ArgumentParser(description="Run the ADK agent with a user query.")

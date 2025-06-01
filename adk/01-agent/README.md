@@ -77,7 +77,6 @@ LOCATION=us-central1
 MODEL=gemini-2.0-flash
 ```
 
-
 ## Getting Started
 
 1. Choose a subfolder (`basic`, `runtime`, or `search`) based on your needs.
@@ -88,3 +87,9 @@ MODEL=gemini-2.0-flash
 ---
 
 For more information, see the individual README files in each subfolder.
+
+
+
+## License
+
+This project is licensed under the Apache License 2.0.

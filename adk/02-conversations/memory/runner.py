@@ -80,17 +80,18 @@ async def run_search_agent(runner:Runner,
         None
     """
 
-    search_session = runner.session_service.create_session(
+
+    search_session = await runner.session_service.create_session(
         app_name=app_name,
         user_id=user_id,
         session_id=session_id,
     )
 
-    search_input = input("\n 👤 User: ")
-    if search_input.lower() == "exit":
+    query = input("\n 👤 User: ")
+    if query.lower() == "exit":
         return
     
-    content_search = types.Content(role='user', parts=[types.Part(text=search_input)])
+    content_search = types.Content(role='user', parts=[types.Part(text=query)])
 
     async for event in runner.run_async(user_id=search_session.user_id, 
                             session_id=search_session.id, 
@@ -101,7 +102,7 @@ async def run_search_agent(runner:Runner,
             print(f"Agent 1 Final Response: {final_response_text}")
 
 
-    completed_session_1 = runner.session_service.get_session(app_name=search_session.app_name, 
+    completed_session_1 = await runner.session_service.get_session(app_name=search_session.app_name, 
                                                       user_id=search_session.user_id, 
                                                       session_id=search_session.id)
 
@@ -132,7 +133,7 @@ async def run_recall_agent(runner:Runner,
         None
     """
 
-    recall_session = runner.session_service.create_session(app_name=app_name, 
+    recall_session = await runner.session_service.create_session(app_name=app_name, 
                                                     user_id=user_id, 
                                                     session_id=session_id)
 

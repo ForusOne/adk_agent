@@ -58,7 +58,11 @@ The agent's instruction guides it to:
 - Use the appropriate sub-agent/tool for positive or negative critique
 - Always answer in the same language as the user's question
 
-## Execution
+## Example Usage
 ```
 ai_agent/adk/01-agent$ uv run -m runtime.runner
 ```
+
+## License
+
+This project is licensed under the Apache License 2.0.
