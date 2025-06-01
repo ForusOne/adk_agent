@@ -3,7 +3,12 @@
 
 This directory contains example agent implementations using the Agent Development Kit (ADK). Each subfolder demonstrates a different approach to building, configuring, and running AI agents, from basic setups to advanced runtime and search-enabled agents.
 
----
+
+## ADK component
+The following image explain the most important concept : event loop in ADK runtime.
+
+![adk component](https://github.com/ForusOne/adk_agent/blob/main/images/adk_components.png?raw=true)
+
 
 ## Subfolders Overview
 
