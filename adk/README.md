@@ -1,10 +1,15 @@
 # AI Agent on ADK(Agent Development Kit)
 
 The source codes in this repository were developed using VS Code, but it's IDE-agnostic.  
-Note : https://code.visualstudio.com/
+You can install VS Code from the following url.  Note : https://code.visualstudio.com/
 
 ## Install uv package manager.
 ### 1. uv install
+
+This project uses uv for python package manager.    
+An extremely fast Python package and project manager, written in Rust.
+Note : https://github.com/astral-sh/uv
+
 ```
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
@@ -13,7 +18,7 @@ or
 pip install uv
 ```
 
-## 2. uv init
+## 2. uv inititalizaton and set virtual env. 
 
 Initialize venv with **pyproject.toml** file which should be located in **the same directory**.  
 You have to have **pyproject.toml** in the **/adk_agent/adk** directory.
@@ -33,16 +38,12 @@ Deactivate the virtual environment
 /adk_agent/adk$ deactivate
 ```
 
-###  3. command examples
-```
-uv init
-uv add ruff==2.2.2
-uv --help
-```
+###  3. Unit test for a simple ADK agent. 
 
-###  4. Unit test
+To check the runtime virtual environment is properly configured, let's run a simple ADK agent in code. 
 
 Create .env file in **adk_agent/adk/01-agent/***
+
 ```
 (adk) /adk_agent/adk/01-agent$ ls -al
 total 16
@@ -56,7 +57,9 @@ drwxr-xr-x   7 forus  pgroup   224 Jun  2 08:26 search
 (adk) /adk_agent/adk/01-agent$
 ```
 
-Sample .env file 
+Here is sample .env file, change the information with your GCP project information and API key. 
+
+Note: https://ai.google.dev/gemini-api/docs/api-key
 
 ```
 GOOGLE_GENAI_USE_VERTEXAI=FALSE
@@ -74,3 +77,4 @@ Run the unit test
 ```
 
 Type in the chat : What is Generative AI ?
+
