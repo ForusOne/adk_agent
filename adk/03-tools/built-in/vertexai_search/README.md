@@ -17,6 +17,9 @@ Place your `.env` file in the parent folder (e.g., `adk/03-tools/`).
 Example:
 
 ```
+GOOGLE_GENAI_USE_VERTEXAI=TRUE
+GOOGLE_API_KEY=AIzerD6uPZRFklKWYZVM2uZh6Bd8 
+
 MODEL=your-model-name
 GOOGLE_CLOUD_PROJECT=your-gcp-project-id
 GOOGLE_CLOUD_LOCATION=global
