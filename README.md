@@ -58,5 +58,5 @@ This repository provides a comprehensive set of examples and reference implement
 
 ## License
 
-This project is licensed under the Apache License 2.0.
+This project is licensed under the Apache License 2.0.  
 All code and content is copyrighted by shins777@gmail.com.
