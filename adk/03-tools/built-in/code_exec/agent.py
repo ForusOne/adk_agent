@@ -15,7 +15,7 @@
 import os
 from dotenv import load_dotenv
 from google.adk.agents import Agent
-from google.adk.tools import built_in_code_execution
+from google.adk.code_executors import BuiltInCodeExecutor
 
 load_dotenv()
 
@@ -47,7 +47,7 @@ def build_agent() -> Agent:
         model = os.getenv("MODEL"),
         description = "Performs calculations by running Python code.",
         instruction = INSTRUCTION,
-        tools=[built_in_code_execution],
+        tools=[BuiltInCodeExecutor],
     )
 
     return code_execution_agent
