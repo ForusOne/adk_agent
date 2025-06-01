@@ -4,4 +4,3 @@
     ```
     uv venv --python 3.13
     ```
-uv pip install google-adk[vertexai]==1.1.1

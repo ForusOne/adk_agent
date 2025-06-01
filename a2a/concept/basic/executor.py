@@ -56,10 +56,11 @@ class EchoAgentExecutor(AgentExecutor):
     
         print(f"### Before invoking Agent context : {context}")
         
-        task = context.current_task
+        # https://google-a2a.github.io/A2A/sdk/python/#a2a.server.agent_execution.RequestContext
+        message = context.message
         query = context.get_user_input()
 
-        print(f"### Current task : {task}")
+        print(f"### Message : {message}")
         print(f"### User's query : {query}")
     
         result = await self.agent.invoke(query=query)        
