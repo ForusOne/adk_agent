@@ -20,7 +20,7 @@ The `basic` agent is a minimal example that shows how to:
 - Define an agent with a custom instruction and description
 - Load environment variables for configuration
 - Instantiate and return an ADK `Agent` object
-- Run the agent to answer user queries in a structured format
+- Run the agent to answer user queries in a structured format 
 
 ## .env Example
 
@@ -28,7 +28,7 @@ Note : This file should be located in the **parent upper folder**.
 
 ```
 GOOGLE_GENAI_USE_VERTEXAI=FALSE
-GOOGLE_API_KEY=AIzerD6uPZRFklKWYZVM2uZh6Bd8 <-- you should use your key.
+GOOGLE_API_KEY=AIzerD6uPZRFklKWYZVM2uZh6Bd8 
 
 PROJECT_ID = "ai-forus"
 PROJECT_NUMBER = "921543942"
@@ -49,7 +49,7 @@ adk/01-agent/basic/
 - `__init__.py`  
   Marks the folder as a Python package.
 
-
+---
 
 ## Example Usage
 Note : Execute the following command on **01-agent** folder. 
@@ -57,7 +57,6 @@ Note : Execute the following command on **01-agent** folder.
 ```
 ai_agent/adk/01-agent$ adk web
 ```
-
 
 ## License
 

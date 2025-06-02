@@ -3,10 +3,19 @@
 
 This folder demonstrates how to build and operate an advanced AI agent using the ADK (Agent Development Kit) framework, featuring sub-agents and agent tools for critique tasks.
 
----
+## Background
+
+### Event Loop in ADK Runtime
+The following image explain the most important concept, that is event loop in ADK runtime. this even loop mechanism is similar with python async event loop. 
+![event loop](https://google.github.io/adk-docs/assets/event-loop.png)
+Image source : https://google.github.io/adk-docs/runtime/#core-idea-the-event-loop
+
+### Invocation Flow
+
+![invocation flow](https://google.github.io/adk-docs/assets/invocation-flow.png)
+Image source : https://google.github.io/adk-docs/runtime/#how-it-works-a-simplified-invocation
 
 ## Overview
-
 The `runtime` agent example shows how to:
 - Define a root agent with sub-agents for positive and negative critique
 - Optionally use agent tools to wrap sub-agents
@@ -14,22 +23,19 @@ The `runtime` agent example shows how to:
 - Instantiate and return an ADK `Agent` object
 - Run the agent in a conversational loop using a runner script
 
----
+## .env Sample
 
-## Event Loop
-The following image explain the most important concept : event loop in ADK runtime.
+Note : This file should be located in the **parent upper folder**.
 
-![event loop](https://google.github.io/adk-docs/assets/event-loop.png)
-Image source : https://google.github.io/adk-docs/runtime/#core-idea-the-event-loop
+```
+GOOGLE_GENAI_USE_VERTEXAI=FALSE
+GOOGLE_API_KEY=AIzerD6uPZRFklK--------WYZVM2uZh6Bd8 <-- you should use your key.
 
----
-
-## Invocation Flow
-
-![invocation flow](https://google.github.io/adk-docs/assets/invocation-flow.png)
-Image source : https://google.github.io/adk-docs/runtime/#how-it-works-a-simplified-invocation
-
-
+PROJECT_ID = "ai-forus"
+PROJECT_NUMBER = "9215---43942"
+LOCATION = "us-central1"
+MODEL = "gemini-2.0-flash"
+```
 
 ## File Structure
 ```
@@ -49,22 +55,6 @@ adk/01-agent/runtime/
   Defines the positive and negative critique sub-agents.
 - `__init__.py`  
   Marks the folder as a Python package.
-
-
-
-## .env
-
-Note : This file should be located in the **parent upper folder**.
-
-```
-GOOGLE_GENAI_USE_VERTEXAI=FALSE
-GOOGLE_API_KEY=AIzerD6uPZRFklK--------WYZVM2uZh6Bd8 <-- you should use your key.
-
-PROJECT_ID = "ai-forus"
-PROJECT_NUMBER = "9215---43942"
-LOCATION = "us-central1"
-MODEL = "gemini-2.0-flash"
-```
 
 ## How It Works
 
