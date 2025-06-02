@@ -38,7 +38,7 @@ Activate the virtual environment
 (adk) adk_agent/adk$
 ```
 
-Deactivate the virtual environment
+After finishing the test, you can deactivate the virtual environment.
 ```
 /adk_agent/adk$ deactivate
 ```
@@ -50,6 +50,8 @@ To check the runtime virtual environment is properly configured, let's run a sim
 Create .env file in **adk_agent/adk/01-agent/***
 
 ```
+(adk) /adk_agent/adk/01-agent$ uv add google-adk[vertexai]==1.1.1
+
 (adk) /adk_agent/adk/01-agent$ ls -al
 total 16
 drwxr-xr-x   7 forus  pgroup   224 Jun  2 08:26 .
