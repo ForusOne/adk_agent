@@ -118,4 +118,3 @@ if __name__ == "__main__":
                           session_id=args.session_id,
                           query=args.query)
     
-    deploy_agent
