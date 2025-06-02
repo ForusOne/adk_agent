@@ -108,15 +108,4 @@ if __name__ == "__main__":
                                 requirements = requirements,
                                 extra_packages = extra_packages)
 
-    # #4. Get the remote agent engine instance.
-    # remote_agent_engine = get_agent_engine(resource_name = remote_agent.resource_name)
 
-    # #5. Execute the query.
-    # print("### Agent REMOTE unit test")
-    
-    # events = remote_agent_engine.stream_query(user_id=user_id,
-    #                                           message=args.query,)
-
-    # for event in events:
-    #     response = event['content']['parts'][0]['text']
-    #     print(f"\n 🤖 Remote AI Assistant: {response}\n")
