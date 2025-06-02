@@ -1,17 +1,15 @@
 
 # ADK 01-Agent Examples
 
-This directory contains example agent implementations using the Agent Development Kit (ADK). Each subfolder demonstrates a different approach to building, configuring, and running AI agents, from basic setups to advanced runtime and search-enabled agents.
+This directory contains example agent implementations using the Agent Development Kit (ADK). Each sub-folder demonstrates a different approach to building, configuring, and running AI agents, from basic setups to advanced runtime and search-enabled agents.
 
 
 ## ADK component
-The following image explain the most important concept : event loop in ADK runtime.
-
+The following image explain components of ADK.
 ![adk component](https://github.com/ForusOne/adk_agent/blob/main/images/adk_components.png?raw=true)
 
 ## Agent Hierarchy.
-ADK is a framework to configure multi-agent system in a process.  You can use sub agent and tool to implement multi-agent system.
-
+ADK is a framework to configure multi-agent system in **a process**.  You can configure multiple sub-agents and tools to implement multi-agent system, But you have to be careful, all this processing is done in a monolithic way, within a single process. 
 ![Agent Hierarchy](https://github.com/ForusOne/adk_agent/blob/main/images/multi-agent.png?raw=true)
 
 ## Subfolders Overview
