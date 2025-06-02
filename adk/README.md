@@ -47,11 +47,15 @@ After finishing the test, you can deactivate the virtual environment.
 
 To check the runtime virtual environment is properly configured, let's run a simple ADK agent in code. 
 
-Create .env file in **adk_agent/adk/01-agent/***
+adk package install.
 
 ```
 (adk) /adk_agent/adk/01-agent$ uv add google-adk[vertexai]==1.1.1
+```
 
+Create .env file in **adk_agent/adk/01-agent/***
+
+```
 (adk) /adk_agent/adk/01-agent$ ls -al
 total 16
 drwxr-xr-x   7 forus  pgroup   224 Jun  2 08:26 .

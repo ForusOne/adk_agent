@@ -43,7 +43,6 @@ Note : Execute the following command on **01-conversations** folder.
 ai_agent/adk/02-conversations$ uv run -m event.runner
 ```
 
-
 ## License
 
 This project is licensed under the Apache License 2.0.
