@@ -3,28 +3,26 @@
 
 This folder demonstrates how to build and operate a simple AI agent using the ADK (Agent Development Kit) framework.
 
-## Overview
+## Background
 
+### Agent types
+We can use there three types of agents for the purpose of business scenarios in various ways of composition of multi-agents and tools.
+![agent types](https://google.github.io/adk-docs/assets/agent-types.png)
+Image source : https://google.github.io/adk-docs/agents/#agents
+
+### Agent Comparison
+Here are comparison of three types of agents. 
+![agent types](https://github.com/ForusOne/adk_agent/blob/main/images/agent_comparison.png?raw=true)
+Image source : https://google.github.io/adk-docs/agents/#choosing-the-right-agent-type
+
+## Overview
 The `basic` agent is a minimal example that shows how to:
 - Define an agent with a custom instruction and description
 - Load environment variables for configuration
 - Instantiate and return an ADK `Agent` object
 - Run the agent to answer user queries in a structured format
 
-## Agent types
-We can use there three types of agents for the purpose of business scenarios. 
-
-![agent types](https://google.github.io/adk-docs/assets/agent-types.png)
-Image source : https://google.github.io/adk-docs/agents/#agents
-
-
-## Agent Comparison
-
-![agent types](https://github.com/ForusOne/adk_agent/blob/main/images/agent_comparison.png?raw=true)
-Image source : https://google.github.io/adk-docs/agents/#choosing-the-right-agent-type
-
-
-## .env
+## .env Example
 
 Note : This file should be located in the **parent upper folder**.
 
