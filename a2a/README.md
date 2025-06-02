@@ -43,6 +43,12 @@ This directory contains reference implementations and minimal working examples f
 uv venv --python 3.13
 ```
 
+```
+/ai_agent/a2a$ source .venv/bin/activate
+(a2a) /ai_agent/a2a$ 
+```
+
+
 ---
 
 ## License

@@ -62,7 +62,7 @@ async def run_agent( app_name: str,
                                                      session_id = session_id)
 
         print(f"\nState after agent run: {updated_session.state}")
-        print(f"\nState after agent run: {updated_session.state['last_turn']}")
+        print(f"\nState after agent run - last_turn : {updated_session.state['last_turn']}")
 
 #--------------------------------[__main__]----------------------------------
 

@@ -98,11 +98,11 @@ uv add a2a-sdk : https://pypi.org/project/a2a-sdk
 
 ### 2. start server
 ```
-uv run -m basic.server
+/ai_agent/a2a/adk$ uv run -m simple.server
 ```
 ### 3. start client
 ```
-uv run -m basic.client 'hi how are you? '
+/ai_agent/a2a/adk$ uv run -m simple.client
 ```
 ### 4. check agent card.
 
