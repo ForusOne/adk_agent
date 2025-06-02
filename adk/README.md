@@ -3,6 +3,11 @@
 The source codes in this repository were developed using VS Code, but it's IDE-agnostic.  
 You can install VS Code from the following url.  Note : https://code.visualstudio.com/
 
+## git clone
+```
+git clone https://github.com/ForusOne/adk_agent.git
+```
+
 ## Install uv package manager.
 ### 1. uv install
 

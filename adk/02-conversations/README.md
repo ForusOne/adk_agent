@@ -2,10 +2,8 @@
 
 This directory contains advanced conversation agent examples using the Agent Development Kit (ADK). Each subfolder demonstrates a different approach to session management, memory, event streaming, and stateful agent design.
 
----
-
-
-## Session, Event and State
+## Background
+### Session, Event and State
 
 <img src="https://github.com/ForusOne/adk_agent/blob/main/images/session_state_events.png?raw=true" alt="drawing" width="600"/>
 
@@ -34,9 +32,6 @@ This directory contains advanced conversation agent examples using the Agent Dev
 - Tracks and updates state across conversation turns using both implicit and explicit state management.
 - Demonstrates how to use output keys and events to manage session state.
 - See [`state/README.md`](./state/README.md) for details.
-
----
-
 
 ## Getting Started
 
