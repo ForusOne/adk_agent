@@ -1,87 +1,35 @@
-# A2A Basic Concept Example
+# ADK A2A Basic Examples
 
-This folder demonstrates a minimal working example of the A2A (Agent-to-Agent) protocol using Python. It includes a simple echo agent, a server to host the agent, and a client to interact with the agent using both streaming and non-streaming message APIs.
----
+## Example Overview
+This folder contains basic agent, client, and server examples for agent-to-agent (A2A) communication using the ADK framework. It demonstrates minimal working implementations for A2A workflows.
 
-## Overview
+- `agent.py`: Basic agent implementation.
+- `client.py`: Basic client implementation.
+- `server.py`: Basic server implementation.
+- `executor.py`: Utility module for agent operation.
 
-This example shows how to:
-- Define a simple agent that processes user input (echoes in uppercase)
-- Expose the agent via an HTTP server using the A2A protocol
-- Interact with the agent using a Python client (with streaming and non-streaming support)
-- Demonstrate the A2A agent card and skill registration
-
----
-
-## Folder Structure
+## Environment Setting
+Set the following keys in your `.env` file (if required by your agent or client code):
 
 ```
-a2a/concept/basic/
-├── __init__.py
-├── client.py
-├── executor.py
-├── server.py
-├── README.md
+GOOGLE_GENAI_USE_VERTEXAI=FALSE
+GOOGLE_API_KEY=your_google_api_key
+PROJECT_ID=your_project_id
+PROJECT_NUMBER=your_project_number
+LOCATION=your_location
+MODEL=your_model_name
 ```
 
-- `client.py`  
-  Asynchronous client that fetches the agent card, initializes an `A2AClient`, and sends user messages to the agent. Supports both streaming and non-streaming message APIs.
-- `executor.py`  
-  Implements the `EchoAgent` (which returns the user's query in uppercase) and the `EchoAgentExecutor` (which manages agent invocation and event queuing).
-- `server.py`  
-  Sets up and runs an A2A server using `A2AStarletteApplication`, exposing the echo agent via HTTP. Defines the agent's card, skills, and capabilities.
-- `__init__.py`  
-  Marks the folder as a Python package.
+## How to Run the Source Code
+Run the agent, client, or server examples with:
 
-
----
-
-## Agent Details (`executor.py`)
-
-- **`EchoAgent`**: Simple agent that returns the user's query in uppercase.
-- **`EchoAgentExecutor`**: Handles agent invocation, event queuing, and error handling for unsupported operations.
-
----
-
-## Server Details (`server.py`)
-
-- Defines the agent's skill and card (metadata, capabilities, supported modes)
-- Uses `A2AStarletteApplication` and `Uvicorn` to serve the agent on `http://localhost:7777/`
-- Handles incoming requests and delegates to the `EchoAgentExecutor`
-
----
-
-## Client Details (`client.py`)
-
-- Fetches the agent card from the server
-- Initializes an `A2AClient` for communication
-- Accepts user input and sends messages to the agent
-- Prints both streaming and non-streaming responses from the agent
-
----
-
-## Example Usage
-### 1. install package
-uv add python-a2a : https://pypi.org/project/python-a2a
-uv add a2a-sdk : https://pypi.org/project/a2a-sdk
-
-### 2. start server
-```
-/ai_agent/a2a/concept$ uv run -m basic.server
-```
-### 3. start client
+```bash
+uv run python agent.py
+uv run python client.py
+uv run python server.py
 ```
 
-(a2a) /ai_agent/a2a/concept$ uv run -m basic.client
-```
-### 4. check agent card.
+Refer to the README.md in each subfolder for more details.
 
-```
-curl http://0.0.0.0:7777/.well-known/agent.json
-```
-
----
-
-## License
-
-This project is licensed under the Apache License 2.0.
+## License Information
+This project is licensed under the Apache License 2.0. See the [LICENSE](../../../LICENSE) file for details.
