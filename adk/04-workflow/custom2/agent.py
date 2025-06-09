@@ -24,15 +24,14 @@ from .critic import CriticAgent
 load_dotenv()
 
 def build_agent() -> Agent:
-    """
-    Creates and configures a CriticAgent instance with positive, negative, and review critic sub-agents.
+    """Initializes and returns a CriticAgent.
 
-    This function initializes a CriticAgent with the specified sub-agents for positive critique,
-    negative critique, and review. The resulting agent is capable of orchestrating a multi-step
-    critique workflow by delegating tasks to its sub-agents.
+    The CriticAgent is configured with a positive critic sub-agent
+    (positive_critic_agent) and a negative critic sub-agent
+    (negative_critic_agent), which are imported from the .sub_agent module.
 
     Returns:
-        CriticAgent: A configured CriticAgent instance ready to process user queries.
+        Agent: An instance of the CriticAgent.
     """
 
     agent = CriticAgent(
