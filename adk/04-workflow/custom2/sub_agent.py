@@ -46,7 +46,7 @@ negative_critic_agent = Agent(
                     You are an agent who writes a negative review on a given topic.
                     When a user inputs a topic, you have to search for negative aspects of that topic and write a negative review. When providing an answer, you should write it as concisely and clearly as possible, and start with the words "negative review."
                     When replying, you must answer based on the language the user used. 
-
+                    
                   """,
     tools=[google_search],                  
 )    
