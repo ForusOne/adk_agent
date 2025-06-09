@@ -1,23 +1,22 @@
-# Vertex AI Search Tool Example (ADK)
+# Code Execution Tool Example (ADK)
 
 ## Example Overview
-This folder demonstrates how to use the built-in Vertex AI Search tool with ADK agents to answer user queries using Vertex AI Search data stores.
+This folder demonstrates how to build and operate an ADK agent with built-in code execution capabilities. The agent can solve mathematical expressions by writing and executing Python code, returning both the code and the result as plain text.
 
 ## Environment Setting
 Set the following keys in your `.env` file (located in the parent folder):
 
 ```
-GOOGLE_GENAI_USE_VERTEXAI=TRUE
+GOOGLE_GENAI_USE_VERTEXAI=FALSE
 GOOGLE_API_KEY=your_google_api_key
-GOOGLE_CLOUD_PROJECT=your_project_id
-GOOGLE_CLOUD_LOCATION=your_location
+PROJECT_ID=your_project_id
 PROJECT_NUMBER=your_project_number
-DATASTORE_ID=your_datastore_id
+LOCATION=your_location
 MODEL=your_model_name
 ```
 
 ## How to Run the Source Code
-Run the Vertex AI Search agent with:
+Run the code execution agent with:
 
 ```bash
 uv run python agent.py

@@ -1,61 +1,46 @@
 # ADK Tools Overview
 
+## Example Overview
 This directory contains a comprehensive set of examples for integrating various types of tools into ADK (Agent Development Kit) agents. Each subfolder demonstrates a different approach to tool integration, including built-in tools, function tools, LangChain tools, and Model Context Protocol (MCP) tools. Use these examples to learn how to extend agent capabilities with real-world data, web search, code execution, and external system integration.
 
+## Environment Setting
+Set the following keys in your `.env` file (located in this folder):
 
-## Tool
+```
+GOOGLE_GENAI_USE_VERTEXAI=TRUE
+GOOGLE_API_KEY=your_google_api_key
+GOOGLE_CLOUD_PROJECT=your_project_id
+GOOGLE_CLOUD_LOCATION=your_location
+PROJECT_ID=your_project_id
+PROJECT_NUMBER=your_project_number
+LOCATION=your_location
+MODEL=your_model_name
+RAG_CORPUS=your_rag_corpus
+DATASTORE_ID=your_datastore_id
+STOCK_API_KEY=your_stock_api_key
+TAVILY_API_KEY=your_tavily_api_key
+```
 
-A tool is typically a modular code component—like a Python/ Java function. that is invoked by LLM after verifying the purpose of tools(functions)
+Refer to each subfolder for additional requirements.
 
-![tool flow](https://google.github.io/adk-docs/assets/agent-tool-call.png)
-Image source : https://google.github.io/adk-docs/tools/#what-is-a-tool
+## How to Run the Source Code
+- See each subfolder for agent code and instructions.
+- Example (for a built-in tool):
+  ```bash
+  uv run python built-in/code_execution/agent.py
+  ```
+- Example (for a function tool):
+  ```bash
+  uv run python function/single_call/agent.py
+  ```
+- Example (for a LangChain tool):
+  ```bash
+  uv run python langchain/tavily_search/agent.py
+  ```
+- Example (for an MCP tool):
+  ```bash
+  uv run python mcp/client_file_browser/agent.py
+  ```
 
-
-## Tool calling flow
-
-![tool flow](https://google.github.io/adk-docs/assets/quickstart-flow-tool.png)
-Image source : https://google.github.io/adk-docs/get-started/quickstart/#create-agent-project
-
-
-## Subfolders & Summaries
-
-### [`agent_tool/`](agent_tool/)
-- (See subfolder for details.)
-- Demonstrates agent-to-agent tool integration within ADK agents.
-
-### [`built-in/`](built-in/README.md)
-- **Purpose:** Built-in tools for code execution, Google search, RAG, and VertexAI search.
-- **Key Examples:**
-  - [`code_execution/`](built-in/code_execution/README.md): Math/code execution agent.
-  - [`google_search/`](built-in/google_search/README.md): Google search agent.
-  - [`rag_engine/`](built-in/rag_engine/README.md): Vertex AI RAG corpus retrieval agent.
-  - [`vertexai_search/`](built-in/vertexai_search/README.md): Vertex AI Search data store agent.
-- **Limitation:** Only one built-in tool per agent; cannot be used in sub-agents.
-
-### [`function/`](function/README.md)
-- **Purpose:** Function tool integration for calling external APIs.
-- **Key Examples:**
-  - [`multiple_call/`](function/multiple_call/README.md): Multiple function tools (exchange rates, stock prices).
-  - [`single_call/`](function/single_call/README.md): Single function tool (exchange rates).
-
-### [`langchain/`](langchain/README.md)
-- **Purpose:** LangChain-powered tools for advanced web search and data retrieval.
-- **Key Example:**
-  - [`tavily_search/`](langchain/tavily_search/README.md): Tavily web search and exchange rate agent.
-
-### [`mcp/`](mcp/README.md)
-- **Purpose:** Model Context Protocol (MCP) tools for file system and custom server integration.
-- **Key Examples:**
-  - [`client_file_browser/`](mcp/client_file_browser/README.md): File browser agent via MCP.
-  - [`server_exchange_rate/`](mcp/server_exchange_rate/README.md): Exchange rate agent via custom MCP server.
-
-## Getting Started
-
-1. Choose a subfolder based on your tool integration needs.
-2. Review the subfolder's README for specific setup and usage instructions.
-3. Place your `.env` file in the parent folder as described in each example.
-4. Run the agent using the recommended command for that example.
-
----
-
-For more information, see the individual README files in each subfolder.
+## License Information
+This project is licensed under the Apache License 2.0. See the [LICENSE](../LICENSE) file for details.

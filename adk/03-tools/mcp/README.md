@@ -1,4 +1,3 @@
-
 # ADK MCP Tools Overview
 
 This directory contains examples of ADK (Agent Development Kit) agents that use the Model Context Protocol (MCP) to interact with external systems such as file systems and custom servers. Each subfolder demonstrates a different approach to using MCP-powered tools within ADK agents.
@@ -29,4 +28,32 @@ This directory contains examples of ADK (Agent Development Kit) agents that use 
 
 ---
 
-For more information, see the individual README files in each subfolder.
+# MCP Tools Example (ADK)
+
+## Example Overview
+This folder demonstrates how to use Model Context Protocol (MCP) tools with ADK agents for file system and custom server integration.
+
+- `client_file_browser/`: File browser agent via MCP.
+- `server_exchange_rate/`: Exchange rate agent via custom MCP server.
+
+## Environment Setting
+Set the following keys in your `.env` file (located in the parent folder):
+
+```
+GOOGLE_GENAI_USE_VERTEXAI=TRUE
+GOOGLE_API_KEY=your_google_api_key
+PROJECT_ID=your_project_id
+PROJECT_NUMBER=your_project_number
+LOCATION=your_location
+MODEL=your_model_name
+```
+
+## How to Run the Source Code
+See each subfolder for agent code and instructions. Example:
+
+```bash
+uv run python mcp/client_file_browser/agent.py
+```
+
+## License Information
+This project is licensed under the Apache License 2.0. See the [LICENSE](../../LICENSE) file for details.
