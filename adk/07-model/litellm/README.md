@@ -1,13 +1,14 @@
-# Ollama Agent Example (ADK)
+# LiteLLM Agent Example (ADK)
 
 ## Example Overview
-This example demonstrates how to use the ADK framework with local Ollama models (Llama 3, Gemma) as LLM agents.
+This example demonstrates how to use the ADK framework with external LLM providers via LiteLLM. It supports both OpenAI GPT-4o and Anthropic Claude models.
 
 ## Environment Setting
 Set the following keys in your `.env` file:
 
 ```
-OLLAMA_API_BASE=http://localhost:11434
+OPENAI_API_KEY=your_openai_key
+ANTHROPIC_API_KEY=your_anthropic_key
 ```
 
 Other keys (e.g., GOOGLE_API_KEY) may be required for additional features.
@@ -16,10 +17,10 @@ Other keys (e.g., GOOGLE_API_KEY) may be required for additional features.
 Run the agent example with:
 
 ```bash
-uv run python agent.py
+uv run python llm.py
 ```
 
-Edit `agent.py` to select the model (`gemma` or `llama`).
+Edit `llm.py` to select the model (`gpt` or `claude`).
 
 ## License
 This project is licensed under the Apache License 2.0. See the [LICENSE](../../LICENSE) file for details.

@@ -1,24 +1,26 @@
+# Evaluation Examples (ADK)
 
-1. ADK Eval
-    https://google.github.io/adk-docs/evaluate/#3-adk-eval-run-evaluations-via-the-cli
+## Example Overview
+This folder demonstrates how to evaluate ADK agents using the built-in evaluation tools and pytest.
 
-    Command : 
-    ```
-    adk eval agent_eval \
-        agent_eval/data/conversation.test.json \
-        --config_file_path=agent_eval/data/test_config.json \
-        --print_detailed_results
-    ```
-    Issue reported.
-    https://github.com/google/adk-samples/issues/96
+- `agent_eval/`: Contains evaluation data and configuration for agent testing.
 
-2. pytest
-    https://google.github.io/adk-docs/evaluate/#2-pytest-run-tests-programmatically
+## Environment Setting
+Set any required environment variables in your `.env` file. Refer to the main project `.env` for examples.
 
-    : Need to install several pytest-*** packages before using pytest
-    : Dose not look work now --> async issues. 
+## How to Run
+- To run ADK evaluation:
+  ```bash
+  adk eval agent_eval \
+      agent_eval/data/conversation.test.json \
+      --config_file_path=agent_eval/data/test_config.json \
+      --print_detailed_results
+  ```
+- To run pytest-based tests:
+  ```bash
+  uv run pytest -m agent_eval
+  ```
+  (Note: Additional pytest plugins may be required.)
 
-    Command :
-    ```
-    uv run pytest -m agent_eval
-    ```
+## License
+This project is licensed under the Apache License 2.0. See the [LICENSE](../LICENSE) file for details.
