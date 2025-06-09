@@ -17,7 +17,10 @@ STAGING_BUCKET=gs://your-bucket-name
 ```
 
 ## 3. How to Run the Source Code
-1. Install dependencies as specified in the `pyproject.toml` or `requirements.txt`.
+1. GCP Login 
+```
+gcloud auth application-default login
+```
 2. Authenticate with GCP:
    ```bash
    gcloud auth application-default login
@@ -27,10 +30,16 @@ STAGING_BUCKET=gs://your-bucket-name
    - Local test & deployment:
      ```bash
      uv run -m agent_engine.deploy --query 'What is Generative AI?' --agent_name my_agent --user_id user1 --session_id 12345
+
      ```
    - Run deployed agent remotely:
      ```bash
      uv run -m agent_engine.run --resource_name <resource_name> --user_id user1 --session_id 12345 --query 'What is Generative AI?'
+
+     Note : You should set the project number rather than project id in the resource name. 
+     ex> uv run -m agent_engine.run --resource_name projects/721521243942/locations/us-central1/reasoningEngines/2417773292921290752 --user_id user1 --session_id 12345 --query 'What is Generative AI?'
+     
+
      ```
 5. Interact with the agent via the terminal prompt or remote API.
 

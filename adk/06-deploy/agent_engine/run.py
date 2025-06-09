@@ -53,17 +53,18 @@ if __name__ == "__main__":
 
     if remote_agent_engine is not None:
         
-        print(f"\n Reource name : {remote_agent_engine.display_name}\n")
+        print(f"\n Display name : {remote_agent_engine.display_name}\n")
+        print(f"\n Reource name : {remote_agent_engine.resource_name}\n")
 
         print(f"\n 👤 User: {query}\n")
         
-        events = remote_agent_engine.stream_query(user_id=user_id,
-                                                session_id=session_id,
-                                                message=query,)
-
+        #Create a event for unit test.    
+        events = remote_agent_engine.stream_query(user_id=user_id, 
+                                                  message=query)
         for event in events:
             response = event['content']['parts'][0]['text']
-            print(f"\n 🤖 Remote AI Assistant: {response}\n")
+            print(f"\n 🤖 Local AI Assistant: {response}\n")
+
 
     else:
         print("None of agent found.")

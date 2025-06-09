@@ -59,12 +59,12 @@ def build_adk_app(root_agent:Agent,
     # Create a adk_app with root_agent. 
     adk_app = AdkApp(agent=root_agent)
 
-    # Create a event for unit test.    
-    # events = adk_app.stream_query(user_id=user_id,
-    #                               message=query)
-    # for event in events:
-    #     response = event['content']['parts'][0]['text']
-    #     print(f"\n 🤖 Local AI Assistant: {response}\n")
+    #Create a event for unit test.    
+    events = adk_app.stream_query(user_id=user_id,
+                                  message=query)
+    for event in events:
+        response = event['content']['parts'][0]['text']
+        print(f"\n 🤖 Local AI Assistant: {response}\n")
 
     return adk_app
 
