@@ -19,8 +19,11 @@ RAG_CORPUS=your_rag_corpus_id
 ## How to Run the Source Code
 Run the RAG engine agent with:
 
-```bash
-uv run python agent.py
+## Example Usage
+Note : Execute the following command on **03-tools/built-in** folder. 
+
+```
+ai_agent/adk/03-tools/built-in$ adk web
 ```
 
 ## License Information

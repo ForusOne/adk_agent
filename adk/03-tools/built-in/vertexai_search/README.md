@@ -16,11 +16,11 @@ DATASTORE_ID=your_datastore_id
 MODEL=your_model_name
 ```
 
-## How to Run the Source Code
-Run the Vertex AI Search agent with:
+## Example Usage
+Note : Execute the following command on **03-tools/built-in** folder. 
 
-```bash
-uv run python agent.py
+```
+ai_agent/adk/03-tools/built-in$ adk web
 ```
 
 ## License Information

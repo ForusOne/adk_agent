@@ -19,7 +19,9 @@ MODEL=your_model_name
 Run the sub-agent tool example with:
 
 ```bash
-uv run python sub_agent_tool/agent.py
+
+adk web
+
 ```
 
 ## License Information

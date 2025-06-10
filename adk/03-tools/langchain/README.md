@@ -22,7 +22,7 @@ TAVILY_API_KEY=your_tavily_api_key
 See the subfolder for agent code and instructions. Example:
 
 ```bash
-uv run python langchain/tavily_search/agent.py
+langchain/adk web
 ```
 
 ## License Information

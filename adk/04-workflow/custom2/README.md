@@ -25,7 +25,7 @@ MODEL=your_model_name
 Run the agent example with:
 
 ```bash
-uv run python agent.py
+adk web
 ```
 
 You can customize the workflow logic in `critic.py` and the sub-agent behaviors in `sub_agent.py`.

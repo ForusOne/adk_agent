@@ -24,7 +24,7 @@ MODEL=your_model_name
 See each subfolder for agent code and instructions. Example:
 
 ```bash
-uv run python built-in/code_execution/agent.py
+built-in/adk web
 ```
 
 ## License Information

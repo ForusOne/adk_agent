@@ -52,7 +52,7 @@ MODEL=your_model_name
 See each subfolder for agent code and instructions. Example:
 
 ```bash
-uv run python mcp/client_file_browser/agent.py
+mcp/adk web
 ```
 
 ## License Information

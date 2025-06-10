@@ -19,7 +19,10 @@ MODEL=your_model_name
 Run the state conversation agent with:
 
 ```bash
-uv run python agent.py
+uv run -m state.output_key --app_name <app_name> --user_id <user_id> --session_id <session_id>
+
+python main.py --app_name <app_name> --user_id <user_id> --session_id <session_id>
+
 ```
 
 ## License Information

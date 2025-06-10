@@ -23,7 +23,7 @@ STOCK_API_KEY=your_stock_api_key
 See each subfolder for agent code and instructions. Example:
 
 ```bash
-uv run python function/single_call/agent.py
+function/single_call/adk web
 ```
 
 ## License Information
